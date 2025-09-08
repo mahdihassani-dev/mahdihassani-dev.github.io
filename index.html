@@ -1,46 +1,110 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مهدی حسنی - رزومه بک‌اند دولوپر</title>
+    <title>رزومه | مهدی حسنی - بک‌اند دولوپر</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- فونت فارسی وزیر -->
+    <link href="https://cdn.jsdelivr.net/npm/vazirmatn@33.003.13/Vazirmatn-font-face.css" rel="stylesheet">
+
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; }
-        header { background-color: #343a40; color: white; }
-        header h1 { margin-bottom: 0; }
-        .section-title { margin-bottom: 1.5rem; }
-        .card { margin-bottom: 1rem; }
-        footer { background-color: #343a40; color: white; }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #212529;
+            line-height: 1.8;
+        }
+        header {
+            background: linear-gradient(135deg, #343a40, #495057);
+            color: white;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+        }
+        header h1 {
+            font-weight: 700;
+            font-size: 2.2rem;
+        }
+        header p {
+            opacity: 0.9;
+        }
+        .section-title {
+            font-weight: 700;
+            color: #343a40;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+        .section-title::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            height: 3px;
+            background: #0d6efd;
+            border-radius: 3px;
+        }
+        .card {
+            border: none;
+            border-radius: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        footer {
+            background: #343a40;
+            color: white;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.25);
+        }
         a { text-decoration: none; }
+        .btn-custom {
+            background: #0d6efd;
+            color: #fff;
+            border-radius: 30px;
+            padding: 8px 20px;
+            transition: 0.3s;
+        }
+        .btn-custom:hover {
+            background: #0b5ed7;
+            color: #fff;
+        }
+        .accordion-button {
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
 
     <!-- Header -->
-    <header class="text-center py-4">
+    <header class="text-center py-5">
         <h1>مهدی حسنی</h1>
-        <p class="lead">بک‌اند دولوپر | مهندسی کامپیوتر</p>
-        <div>
-            <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank" class="text-white mx-2">
-                <i class="bi bi-linkedin"></i> LinkedIn
+        <p class="lead">بک‌اند دولوپر | دانشجوی مهندسی کامپیوتر</p>
+        <div class="mt-3">
+            <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank" class="btn btn-custom mx-1">
+                <i class="bi bi-linkedin"></i> لینکدین
             </a>
-            <a href="https://github.com/mahdihassani-dev" target="_blank" class="text-white mx-2">
-                <i class="bi bi-github"></i> GitHub
+            <a href="https://github.com/mahdihassani-dev" target="_blank" class="btn btn-dark mx-1">
+                <i class="bi bi-github"></i> گیت‌هاب
             </a>
-            <a href="mailto:m.hassani4951383@gmail.com" class="text-white mx-2">
-                <i class="bi bi-envelope"></i> Email
+            <a href="mailto:m.hassani4951383@gmail.com" class="btn btn-outline-light mx-1">
+                <i class="bi bi-envelope"></i> ایمیل
             </a>
         </div>
     </header>
 
     <!-- About Me -->
-    <section class="container mt-5">
-        <h2 class="text-center section-title">درباره من</h2>
-        <div class="card shadow p-4">
+    <section class="container mt-5 text-center">
+        <h2 class="section-title">درباره من</h2>
+        <div class="card shadow p-4 mt-3">
             <p>
                 من <strong>مهدی حسنی</strong> هستم، دانشجوی مهندسی کامپیوتر دانشگاه یزد (ترم ۵، ورودی ۱۴۰۲) و بک‌اند دولوپر با بیش از ۴ سال تجربه برنامه‌نویسی و ۱ سال تجربه حرفه‌ای با Django. 
                 تخصص من طراحی و توسعه APIهای RESTful، مدیریت پایگاه داده PostgreSQL، Docker و استقرار پروژه‌ها روی سرور است. 
@@ -50,46 +114,30 @@
     </section>
 
     <!-- Skills -->
-    <section class="container mt-5">
-        <h2 class="text-center section-title">مهارت‌ها</h2>
-        <div class="row text-center">
-            <div class="col-md-3 col-6 mb-3">
-                <div class="card p-3 shadow">Python</div>
-            </div>
-            <div class="col-md-3 col-6 mb-3">
-                <div class="card p-3 shadow">Java</div>
-            </div>
-            <div class="col-md-3 col-6 mb-3">
-                <div class="card p-3 shadow">Django / Django REST</div>
-            </div>
-            <div class="col-md-3 col-6 mb-3">
-                <div class="card p-3 shadow">PostgreSQL</div>
-            </div>
-            <div class="col-md-3 col-6 mb-3">
-                <div class="card p-3 shadow">Docker</div>
-            </div>
-            <div class="col-md-3 col-6 mb-3">
-                <div class="card p-3 shadow">Git / GitHub</div>
-            </div>
-            <div class="col-md-3 col-6 mb-3">
-                <div class="card p-3 shadow">Linux / Server Management</div>
-            </div>
-            <div class="col-md-3 col-6 mb-3">
-                <div class="card p-3 shadow">REST API / Backend Development</div>
-            </div>
+    <section class="container mt-5 text-center">
+        <h2 class="section-title">مهارت‌ها</h2>
+        <div class="row mt-3">
+            <div class="col-md-3 col-6 mb-3"><div class="card p-3 shadow-sm">Python</div></div>
+            <div class="col-md-3 col-6 mb-3"><div class="card p-3 shadow-sm">Java</div></div>
+            <div class="col-md-3 col-6 mb-3"><div class="card p-3 shadow-sm">Django / REST</div></div>
+            <div class="col-md-3 col-6 mb-3"><div class="card p-3 shadow-sm">PostgreSQL</div></div>
+            <div class="col-md-3 col-6 mb-3"><div class="card p-3 shadow-sm">Docker</div></div>
+            <div class="col-md-3 col-6 mb-3"><div class="card p-3 shadow-sm">Git / GitHub</div></div>
+            <div class="col-md-3 col-6 mb-3"><div class="card p-3 shadow-sm">Linux / Server</div></div>
+            <div class="col-md-3 col-6 mb-3"><div class="card p-3 shadow-sm">REST API</div></div>
         </div>
     </section>
 
     <!-- Work Experience -->
     <section class="container mt-5">
         <h2 class="text-center section-title">تجربه کاری</h2>
-        <div class="table-responsive">
-            <table class="table table-bordered shadow">
-                <thead class="table-dark">
+        <div class="table-responsive mt-3">
+            <table class="table table-bordered table-striped shadow">
+                <thead class="table-dark text-center">
                     <tr>
                         <th>سمت</th>
                         <th>شرکت</th>
-                        <th>مدت زمان</th>
+                        <th>مدت</th>
                         <th>توضیحات</th>
                     </tr>
                 </thead>
@@ -108,17 +156,17 @@
     <!-- Projects -->
     <section class="container mt-5">
         <h2 class="text-center section-title">پروژه‌ها</h2>
-        <div class="accordion shadow" id="projectsAccordion">
+        <div class="accordion shadow mt-3" id="projectsAccordion">
             <!-- Parvandechi -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingParvandechi">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#projectParvandechi" aria-expanded="true" aria-controls="projectParvandechi">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#projectParvandechi">
                         Parvandechi.ir
                     </button>
                 </h2>
-                <div id="projectParvandechi" class="accordion-collapse collapse show" aria-labelledby="headingParvandechi" data-bs-parent="#projectsAccordion">
+                <div id="projectParvandechi" class="accordion-collapse collapse show" data-bs-parent="#projectsAccordion">
                     <div class="accordion-body">
-                        <p><strong>توضیحات:</strong> بازی آنلاین پرونده جنایی با بک‌اند Django، فرانت React + Vite + TypeScript، پایگاه داده PostgreSQL، درگاه پرداخت و OTP، داکرایز شده و نسخه وب‌ویو در کافه بازار.</p>
+                        <p><strong>توضیحات:</strong> بازی آنلاین پرونده جنایی با Django (بک‌اند) و React + Vite + TypeScript (فرانت‌اند)، پایگاه داده PostgreSQL، درگاه پرداخت و OTP، داکرایز شده و نسخه وب‌ویو در کافه بازار.</p>
                         <p><strong>لینک:</strong> <a href="https://parvandechi.ir" target="_blank">parvandechi.ir</a></p>
                     </div>
                 </div>
@@ -126,11 +174,11 @@
             <!-- Rwagh -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingRwagh">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projectRwagh" aria-expanded="false" aria-controls="projectRwagh">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projectRwagh">
                         Rwagh.ir
                     </button>
                 </h2>
-                <div id="projectRwagh" class="accordion-collapse collapse" aria-labelledby="headingRwagh" data-bs-parent="#projectsAccordion">
+                <div id="projectRwagh" class="accordion-collapse collapse" data-bs-parent="#projectsAccordion">
                     <div class="accordion-body">
                         <p><strong>توضیحات:</strong> پلتفرم خرید و فروش کتاب دست دوم، همکاری با تیم فرانت‌اند، مدیریت بک‌اند و سرور با Django، PostgreSQL و Next.js.</p>
                         <p><strong>لینک:</strong> <a href="https://rwagh.ir" target="_blank">rwagh.ir</a></p>
@@ -140,11 +188,11 @@
             <!-- Tabibaan -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTabibaan">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projectTabibaan" aria-expanded="false" aria-controls="projectTabibaan">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#projectTabibaan">
                         Tabibaan.ir
                     </button>
                 </h2>
-                <div id="projectTabibaan" class="accordion-collapse collapse" aria-labelledby="headingTabibaan" data-bs-parent="#projectsAccordion">
+                <div id="projectTabibaan" class="accordion-collapse collapse" data-bs-parent="#projectsAccordion">
                     <div class="accordion-body">
                         <p><strong>توضیحات:</strong> شبکه اجتماعی پزشکان برای تبادل نظر، توسعه بک‌اند و مدیریت بخشی از سرور با تیم ۴ نفره. تکنولوژی‌ها: Django, PostgreSQL, Next.js, Docker.</p>
                         <p><strong>لینک:</strong> <a href="https://tabibaan.ir" target="_blank">tabibaan.ir</a></p>
@@ -155,17 +203,17 @@
     </section>
 
     <!-- Education -->
-    <section class="container mt-5">
-        <h2 class="text-center section-title">تحصیلات</h2>
-        <div class="card shadow p-4 text-center">
+    <section class="container mt-5 text-center">
+        <h2 class="section-title">تحصیلات</h2>
+        <div class="card shadow p-4 mt-3">
             <p>کارشناسی مهندسی کامپیوتر – دانشگاه یزد | ورودی ۱۴۰۲ (ترم ۵)</p>
         </div>
     </section>
 
     <!-- Contact -->
-    <section class="container mt-5">
-        <h2 class="text-center section-title">ارتباط با من</h2>
-        <div class="card shadow p-4 text-center">
+    <section class="container mt-5 text-center">
+        <h2 class="section-title">ارتباط با من</h2>
+        <div class="card shadow p-4 mt-3">
             <p><i class="bi bi-envelope"></i> <a href="mailto:m.hassani4951383@gmail.com">m.hassani4951383@gmail.com</a></p>
             <p><i class="bi bi-linkedin"></i> <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank">LinkedIn</a></p>
             <p><i class="bi bi-github"></i> <a href="https://github.com/mahdihassani-dev" target="_blank">GitHub</a></p>
@@ -174,10 +222,10 @@
 
     <!-- Footer -->
     <footer class="text-center py-3 mt-5">
-        <p>&copy; 2025 مهدی حسنی. ساخته شده با ❤️ HTML, CSS و Bootstrap.</p>
+        <p>&copy; ۲۰۲۵ مهدی حسنی | ساخته شده با ❤️ HTML, CSS و Bootstrap</p>
     </footer>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
