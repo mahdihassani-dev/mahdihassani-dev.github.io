@@ -1,87 +1,93 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resume | Mahdi Hassani</title>
-  <!-- Bootstrap RTL for Persian support -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <!-- Vazirmatn for Persian -->
   <link href="https://cdn.jsdelivr.net/npm/vazirmatn@33.003.13/Vazirmatn-font-face.css" rel="stylesheet">
-  <!-- Google Fonts for English: Inter (modern alternative to Roboto) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-primary: #ffffff;
-      --bg-secondary: #f8f9fa;
-      --text-primary: #1a1a1a;
-      --text-secondary: #6c757d;
-      --accent: #007bff;
+      --primary-color: #4361ee;
+      --secondary-color: #3a0ca3;
+      --text-color: #212529;
+      --bg-color: #f8f9fa;
       --card-bg: #ffffff;
-      --border-color: #e9ecef;
-      --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --transition: all 0.3s ease;
     }
 
-    [data-theme="dark"] {
-      --bg-primary: #1a1a1a;
-      --bg-secondary: #2d2d2d;
-      --text-primary: #f8f9fa;
-      --text-secondary: #adb5bd;
-      --accent: #4dabf7;
-      --card-bg: #2d2d2d;
-      --border-color: #495057;
-      --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    .dark-mode {
+      --primary-color: #4cc9f0;
+      --secondary-color: #4895ef;
+      --text-color: #f8f9fa;
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: var(--transition);
       line-height: 1.6;
-      transition: background 0.3s ease, color 0.3s ease;
-      margin: 0;
-      padding: 0;
     }
 
-    body[data-theme="fa"] {
-      font-family: 'Vazirmatn', sans-serif;
+    body.language-fa {
+      font-family: 'Vazirmatn', 'Inter', sans-serif;
     }
 
+    .container-custom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header Styles */
     header {
-      background: var(--bg-secondary);
-      padding: 2rem 0;
-      text-align: center;
-      border-bottom: 1px solid var(--border-color);
-      transition: background 0.3s ease;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      border-radius: 0 0 25px 25px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      padding: 3rem 0;
     }
 
-    [data-theme="dark"] header {
-      background: var(--bg-secondary);
-      border-bottom-color: var(--border-color);
-    }
-
-    .section-title {
-      font-weight: 600;
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 5px solid rgba(255, 255, 255, 0.3);
       margin-bottom: 1.5rem;
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-weight: 700;
+      margin-bottom: 2rem;
       position: relative;
       display: inline-block;
-      color: var(--text-primary);
+      padding-bottom: 10px;
     }
 
     .section-title::after {
       content: "";
       position: absolute;
-      bottom: -5px;
       left: 0;
-      width: 50px;
-      height: 2px;
-      background: var(--accent);
-      border-radius: 1px;
-      transition: width 0.3s ease;
+      bottom: 0;
+      width: 50%;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 10px;
+      transition: var(--transition);
     }
 
     body[dir="rtl"] .section-title::after {
@@ -89,263 +95,229 @@
       right: 0;
     }
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      color: var(--text-primary);
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    [data-theme="dark"] .card {
-      color: var(--text-primary);
-    }
-
-    .btn-custom {
-      background: var(--accent);
-      color: white;
+    /* Cards */
+    .card-custom {
+      background-color: var(--card-bg);
       border: none;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      text-decoration: none;
-      transition: background 0.3s ease, transform 0.2s ease;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      overflow: hidden;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .card-custom:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    .dark-mode .card-custom:hover {
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    /* Buttons */
+    .btn-custom {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #fff;
+      border-radius: 30px;
+      padding: 10px 25px;
+      transition: var(--transition);
+      border: none;
       font-weight: 500;
     }
 
     .btn-custom:hover {
-      background: #0056b3;
-      transform: translateY(-1px);
-      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 15px rgba(67, 97, 238, 0.3);
+      color: #fff;
     }
 
-    .btn-outline-custom {
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      background: transparent;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      transition: all 0.3s ease;
-    }
-
-    .btn-outline-custom:hover {
-      background: var(--accent);
-      color: white;
-    }
-
-    footer {
-      background: var(--bg-secondary);
-      color: var(--text-secondary);
-      text-align: center;
-      padding: 1.5rem 0;
-      border-top: 1px solid var(--border-color);
-      margin-top: 3rem;
-    }
-
-    [data-theme="dark"] footer {
-      background: var(--bg-secondary);
-      border-top-color: var(--border-color);
-      color: var(--text-secondary);
-    }
-
+    /* Tech List */
     .tech-list span {
       display: inline-block;
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      padding: 0.5rem 1rem;
-      margin: 0.25rem;
+      background: rgba(67, 97, 238, 0.1);
+      color: var(--primary-color);
+      padding: 8px 16px;
+      margin: 6px;
       border-radius: 20px;
-      font-size: 0.875rem;
-      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      font-weight: 500;
     }
 
-    [data-theme="dark"] .tech-list span {
-      background: var(--border-color);
-      color: var(--text-primary);
+    .dark-mode .tech-list span {
+      background: rgba(76, 201, 240, 0.15);
+      color: var(--primary-color);
     }
 
     .tech-list span:hover {
       transform: scale(1.05);
-      background: var(--accent);
-      color: white;
+      background: rgba(67, 97, 238, 0.2);
     }
 
     /* Language Specific */
     .en { display: block; }
     .fa { display: none; }
-    body[data-theme="fa"] .en { display: none; }
-    body[data-theme="fa"] .fa { display: block; }
+    body.language-fa .en { display: none; }
+    body.language-fa .fa { display: block; }
 
-    /* Table Styles for Work Experience */
-    .table {
+    /* Table Styles */
+    .table-custom {
       width: 100%;
       border-collapse: collapse;
-      background: var(--card-bg);
-      border-radius: 8px;
+      border-radius: 15px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      color: var(--text-primary);
+      background-color: var(--card-bg);
     }
 
-    .table th,
-    .table td {
-      padding: 1rem;
+    .table-custom thead {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+    }
+
+    .table-custom th, .table-custom td {
+      padding: 1.2rem;
       text-align: left;
-      border-bottom: 1px solid var(--border-color);
-      color: var(--text-primary);
     }
 
-    body[dir="rtl"] .table th,
-    body[dir="rtl"] .table td {
+    body[dir="rtl"] .table-custom th, 
+    body[dir="rtl"] .table-custom td {
       text-align: right;
     }
 
-    .table thead th {
-      background: var(--accent);
-      color: white;
-      font-weight: 600;
+    .table-custom tbody tr {
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      transition: var(--transition);
     }
 
-    [data-theme="dark"] .table {
-      background: var(--card-bg);
+    .dark-mode .table-custom tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    [data-theme="dark"] .table th,
-    [data-theme="dark"] .table td {
-      color: var(--text-primary);
-      border-bottom-color: var(--border-color);
+    .table-custom tbody tr:hover {
+      background-color: rgba(67, 97, 238, 0.05);
     }
 
-    [data-theme="dark"] .table thead th {
-      background: #0056b3;
-      color: white;
+    .dark-mode .table-custom tbody tr:hover {
+      background-color: rgba(76, 201, 240, 0.05);
     }
 
-    /* Clock Styles */
-    .clock {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-      margin: 1rem 0;
+    /* Real-time Clock */
+    .real-time-clock {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 1.2rem 2rem;
       box-shadow: var(--shadow);
-      color: var(--text-primary);
+      display: inline-block;
+      margin: 1.5rem 0;
+      transition: var(--transition);
     }
 
     .clock-time {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      font-variant-numeric: tabular-nums;
     }
 
     .clock-date {
-      font-size: 1rem;
-      color: var(--text-secondary);
+      font-size: 1.1rem;
+      color: var(--text-color);
+      opacity: 0.8;
     }
 
     /* Toggle Buttons */
     .toggle-btn {
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      font-size: 0.875rem;
-      transition: all 0.3s ease;
-      margin: 0.25rem;
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-weight: 500;
+      transition: var(--transition);
+      border: 2px solid transparent;
     }
 
     .toggle-btn:hover {
-      transform: translateY(-1px);
+      transform: translateY(-3px);
     }
 
-    /* Container */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 1rem;
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      border-radius: 25px 25px 0 0;
+      padding: 30px;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+      margin-top: 4rem;
+      transition: var(--transition);
     }
 
-    /* Skills Grid */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .skill-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s ease;
-      color: var(--text-primary);
-    }
-
-    .skill-card:hover {
-      transform: translateY(-2px);
-    }
-
-    /* Responsive */
+    /* Responsive Adjustments */
     @media (max-width: 768px) {
-      .clock-time { font-size: 1.5rem; }
-      .table { font-size: 0.875rem; }
-      .table th, .table td { padding: 0.75rem; }
+      .profile-img {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .clock-time {
+        font-size: 2rem;
+      }
+      
+      .table-responsive {
+        overflow-x: auto;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
-
-<body data-theme="en">
+<body class="language-en">
 
   <!-- Header -->
-  <header class="text-center">
-    <h1 class="en">Mahdi Hassani</h1>
-    <h1 class="fa">مهدی حسنی</h1>
-    <p class="lead en mb-3">Back-end Developer | Computer Engineering Student</p>
-    <p class="lead fa mb-3">بک‌اند دولوپر | دانشجوی مهندسی کامپیوتر</p>
-    
-    <!-- Clock -->
-    <div class="clock">
-      <div class="clock-time" id="clockTime"></div>
-      <div class="clock-date" id="clockDate"></div>
-    </div>
-
-    <div class="mb-3">
-      <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank" class="btn btn-custom">
-        <i class="bi bi-linkedin me-1"></i><span class="en">LinkedIn</span><span class="fa">لینکدین</span>
-      </a>
-      <a href="https://github.com/mahdihassani-dev" target="_blank" class="btn btn-outline-custom">
-        <i class="bi bi-github me-1"></i><span class="en">GitHub</span><span class="fa">گیت‌هاب</span>
-      </a>
-      <a href="mailto:m.hassani4951383@gmail.com" class="btn btn-outline-custom">
-        <i class="bi bi-envelope me-1"></i><span class="en">Email</span><span class="fa">ایمیل</span>
-      </a>
-    </div>
-
-    <div>
-      <button id="toggleDark" class="btn btn-outline-custom toggle-btn">
-        <i class="bi bi-moon me-1"></i><span class="en">Dark Mode</span><span class="fa">حالت تاریک</span>
-      </button>
-      <button id="toggleLanguage" class="btn btn-outline-custom toggle-btn">
-        <i class="bi bi-translate me-1"></i><span class="en">فارسی</span><span class="fa">English</span>
-      </button>
+  <header class="text-center py-5 mb-5">
+    <div class="container-custom">
+      <img src="https://via.placeholder.com/150" alt="Profile" class="profile-img rounded-circle">
+      <h1 class="en">Mahdi Hassani</h1>
+      <h1 class="fa">مهدی حسنی</h1>
+      <p class="lead en">Back-end Developer | Computer Engineering Student</p>
+      <p class="lead fa">بک‌اند دولوپر | دانشجوی مهندسی کامپیوتر</p>
+      
+      <!-- Real-time Clock -->
+      <div class="real-time-clock">
+        <div id="clock" class="clock-time">00:00:00</div>
+        <div id="date" class="clock-date">Loading date...</div>
+      </div>
+      
+      <div class="mt-4">
+        <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank" class="btn btn-custom mx-1 mb-2">
+          <i class="bi bi-linkedin"></i> <span class="en">LinkedIn</span><span class="fa">لینکدین</span>
+        </a>
+        <a href="https://github.com/mahdihassani-dev" target="_blank" class="btn btn-dark mx-1 mb-2">
+          <i class="bi bi-github"></i> <span class="en">GitHub</span><span class="fa">گیت‌هاب</span>
+        </a>
+        <a href="mailto:m.hassani4951383@gmail.com" class="btn btn-outline-light mx-1 mb-2">
+          <i class="bi bi-envelope"></i> <span class="en">Email</span><span class="fa">ایمیل</span>
+        </a>
+      </div>
+      <div class="mt-3">
+        <button id="toggleDark" class="btn btn-light toggle-btn mx-1 mb-2">
+          <i class="bi bi-moon"></i> <span class="en">Dark Mode</span><span class="fa">حالت تاریک</span>
+        </button>
+        <button id="toggleLanguage" class="btn btn-outline-light toggle-btn mx-1 mb-2">
+          <i class="bi bi-translate"></i> <span class="en">فارسی</span><span class="fa">English</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container-custom">
     <!-- About Me -->
-    <section class="mt-5 text-center">
+    <section class="mb-5 text-center">
       <h2 class="section-title en">About Me</h2>
       <h2 class="section-title fa">درباره من</h2>
-      <div class="card">
+      <div class="card-custom">
         <p class="en">
           I am <strong>Mahdi Hassani</strong>, a Computer Engineering student at Yazd University (Semester 5, Entry 2023) and a back-end developer with over 4 years of programming experience and 1 year of professional experience with Django.
           My expertise lies in designing and developing RESTful APIs, managing PostgreSQL databases, Docker, and deploying projects on servers.
@@ -360,27 +332,27 @@
     </section>
 
     <!-- Skills -->
-    <section class="mt-5 text-center">
+    <section class="mb-5 text-center">
       <h2 class="section-title en">Skills</h2>
       <h2 class="section-title fa">مهارت‌ها</h2>
-      <div class="skills-grid">
-        <div class="skill-card en">Python</div>
-        <div class="skill-card en">Java</div>
-        <div class="skill-card en">Django / REST</div>
-        <div class="skill-card en">PostgreSQL</div>
-        <div class="skill-card en">Docker</div>
-        <div class="skill-card en">Git / GitHub</div>
-        <div class="skill-card en">Linux / Server</div>
-        <div class="skill-card en">REST API</div>
+      <div class="row mt-4">
+        <div class="col-md-3 col-6 mb-3"><div class="card-custom py-3">Python</div></div>
+        <div class="col-md-3 col-6 mb-3"><div class="card-custom py-3">Java</div></div>
+        <div class="col-md-3 col-6 mb-3"><div class="card-custom py-3">Django / REST</div></div>
+        <div class="col-md-3 col-6 mb-3"><div class="card-custom py-3">PostgreSQL</div></div>
+        <div class="col-md-3 col-6 mb-3"><div class="card-custom py-3">Docker</div></div>
+        <div class="col-md-3 col-6 mb-3"><div class="card-custom py-3">Git / GitHub</div></div>
+        <div class="col-md-3 col-6 mb-3"><div class="card-custom py-3">Linux / Server</div></div>
+        <div class="col-md-3 col-6 mb-3"><div class="card-custom py-3">REST API</div></div>
       </div>
     </section>
 
     <!-- Work Experience -->
-    <section class="mt-5">
+    <section class="mb-5">
       <h2 class="text-center section-title en">Work Experience</h2>
       <h2 class="text-center section-title fa">تجربه کاری</h2>
-      <div class="table-responsive">
-        <table class="table">
+      <div class="mt-4">
+        <table class="table-custom">
           <thead>
             <tr>
               <th class="en">Position</th>
@@ -410,17 +382,17 @@
     </section>
 
     <!-- Projects -->
-    <section class="mt-5">
+    <section class="mb-5">
       <h2 class="text-center section-title en">Projects</h2>
       <h2 class="text-center section-title fa">پروژه‌ها</h2>
 
       <!-- Parvandechi -->
-      <div class="card">
+      <div class="card-custom mb-4">
         <h3 class="fw-bold en">Parvandechi</h3>
         <h3 class="fw-bold fa">پرونده‌چی</h3>
-        <p class="text-secondary en">Online Criminal Case Game</p>
-        <p class="text-secondary fa">بازی پرونده جنایی آنلاین</p>
-        <div class="tech-list">
+        <p class="text-muted en">Online Criminal Case Game</p>
+        <p class="text-muted fa">بازی پرونده جنایی آنلاین</p>
+        <div class="tech-list mt-3">
           <span>Django</span>
           <span>REST Framework</span>
           <span>PostgreSQL</span>
@@ -432,18 +404,18 @@
         </div>
         <div class="mt-3">
           <a href="https://parvandechi.ir" target="_blank" class="btn btn-custom">
-            <i class="bi bi-box-arrow-up-right me-1"></i><span class="en">View Site</span><span class="fa">مشاهده سایت</span>
+            <i class="bi bi-box-arrow-up-right"></i> <span class="en">View Site</span><span class="fa">مشاهده سایت</span>
           </a>
         </div>
       </div>
 
       <!-- Rwagh -->
-      <div class="card">
+      <div class="card-custom mb-4">
         <h3 class="fw-bold en">Rwagh</h3>
         <h3 class="fw-bold fa">رواق</h3>
-        <p class="text-secondary en">Second-Hand Book Marketplace</p>
-        <p class="text-secondary fa">بازارچه خرید و فروش کتاب دست دوم</p>
-        <div class="tech-list">
+        <p class="text-muted en">Second-Hand Book Marketplace</p>
+        <p class="text-muted fa">بازارچه خرید و فروش کتاب دست دوم</p>
+        <div class="tech-list mt-3">
           <span>Django</span>
           <span>PostgreSQL</span>
           <span>Docker</span>
@@ -451,18 +423,18 @@
         </div>
         <div class="mt-3">
           <a href="https://rwagh.ir" target="_blank" class="btn btn-custom">
-            <i class="bi bi-box-arrow-up-right me-1"></i><span class="en">View Site</span><span class="fa">مشاهده سایت</span>
+            <i class="bi bi-box-arrow-up-right"></i> <span class="en">View Site</span><span class="fa">مشاهده سایت</span>
           </a>
         </div>
       </div>
 
       <!-- Tabibaan -->
-      <div class="card">
+      <div class="card-custom mb-4">
         <h3 class="fw-bold en">Tabibaan</h3>
         <h3 class="fw-bold fa">طبیبان</h3>
-        <p class="text-secondary en">Doctors' Social Network</p>
-        <p class="text-secondary fa">شبکه اجتماعی پزشکان</p>
-        <div class="tech-list">
+        <p class="text-muted en">Doctors' Social Network</p>
+        <p class="text-muted fa">شبکه اجتماعی پزشکان</p>
+        <div class="tech-list mt-3">
           <span>Django</span>
           <span>PostgreSQL</span>
           <span>Docker</span>
@@ -470,106 +442,142 @@
         </div>
         <div class="mt-3">
           <a href="https://tabibaan.ir" target="_blank" class="btn btn-custom">
-            <i class="bi bi-box-arrow-up-right me-1"></i><span class="en">View Site</span><span class="fa">مشاهده سایت</span>
+            <i class="bi bi-box-arrow-up-right"></i> <span class="en">View Site</span><span class="fa">مشاهده سایت</span>
           </a>
         </div>
       </div>
     </section>
 
     <!-- Education -->
-    <section class="mt-5 text-center">
+    <section class="mb-5 text-center">
       <h2 class="section-title en">Education</h2>
       <h2 class="section-title fa">تحصیلات</h2>
-      <div class="card">
+      <div class="card-custom">
         <p class="en">Bachelor's in Computer Engineering – Yazd University | Entry 2023 (Semester 5)</p>
         <p class="fa">کارشناسی مهندسی کامپیوتر – دانشگاه یزد | ورودی ۱۴۰۲ (ترم ۵)</p>
       </div>
     </section>
 
     <!-- Contact -->
-    <section class="mt-5 text-center">
+    <section class="mb-5 text-center">
       <h2 class="section-title en">Contact Me</h2>
       <h2 class="section-title fa">ارتباط با من</h2>
-      <div class="card">
-        <p><i class="bi bi-envelope me-2"></i><a href="mailto:m.hassani4951383@gmail.com" class="text-decoration-none" style="color: var(--accent);">m.hassani4951383@gmail.com</a></p>
-        <p><i class="bi bi-linkedin me-2"></i><a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank" class="text-decoration-none" style="color: var(--accent);">LinkedIn</a></p>
-        <p><i class="bi bi-github me-2"></i><a href="https://github.com/mahdihassani-dev" target="_blank" class="text-decoration-none" style="color: var(--accent);">GitHub</a></p>
+      <div class="card-custom">
+        <p><i class="bi bi-envelope me-2"></i> <a href="mailto:m.hassani4951383@gmail.com">m.hassani4951383@gmail.com</a></p>
+        <p><i class="bi bi-linkedin me-2"></i> <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank">LinkedIn</a></p>
+        <p><i class="bi bi-github me-2"></i> <a href="https://github.com/mahdihassani-dev" target="_blank">GitHub</a></p>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer>
-    <p class="en mb-0">&copy; 2025 Mahdi Hassani | Built with ❤️</p>
-    <p class="fa mb-0">&copy; ۲۰۲۵ مهدی حسنی | ساخته شده با ❤️</p>
+  <footer class="text-center">
+    <p class="en">&copy; 2025 Mahdi Hassani | Built with ❤️</p>
+    <p class="fa">&copy; ۲۰۲۵ مهدی حسنی | ساخته شده با ❤️</p>
   </footer>
 
   <script>
-    // Clock Functionality
+    // Real-time Clock
     function updateClock() {
       const now = new Date();
-      const timeString = now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-      const dateString = now.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
+      const clockElement = document.getElementById('clock');
+      const dateElement = document.getElementById('date');
       
-      document.getElementById('clockTime').textContent = timeString;
-      document.getElementById('clockDate').textContent = dateString;
+      // Format time
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      // Format date
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      let dateString;
+      
+      if (document.body.classList.contains('language-fa')) {
+        // Persian date format
+        const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        const day = now.getDate();
+        const month = now.getMonth() + 1;
+        const year = now.getFullYear();
+        
+        const formatToPersian = num => {
+          return num.toString().replace(/\d/g, d => farsiDigits[parseInt(d)]);
+        };
+        
+        const persianMonths = [
+          'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
+          'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
+        ];
+        
+        const persianDays = [
+          'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'
+        ];
+        
+        dateString = `${persianDays[now.getDay()]}، ${formatToPersian(day)} ${persianMonths[month-1]} ${formatToPersian(year)}`;
+      } else {
+        // English date format
+        dateString = now.toLocaleDateString('en-US', { 
+          weekday: 'long', 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+      }
+      
+      clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+      dateElement.textContent = dateString;
     }
     
+    // Update clock immediately and then every second
     updateClock();
-    setInterval(updateClock, 1000); // Update every second
-
+    setInterval(updateClock, 1000);
+    
     // Dark Mode Toggle
     const toggleDarkBtn = document.getElementById('toggleDark');
     toggleDarkBtn.addEventListener('click', () => {
-      const body = document.body;
-      const isDark = body.getAttribute('data-theme') === 'dark';
-      
-      if (isDark) {
-        body.setAttribute('data-theme', 'en');
-        body.setAttribute('dir', 'ltr'); // Reset if needed, but handled in lang toggle
-        toggleDarkBtn.innerHTML = '<i class="bi bi-moon me-1"></i> ' + (body.getAttribute('data-theme') === 'fa' ? 'حالت تاریک' : 'Dark Mode');
-        toggleDarkBtn.className = 'btn btn-outline-custom toggle-btn';
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        toggleDarkBtn.innerHTML = '<i class="bi bi-brightness-high"></i> ' + (document.body.classList.contains('language-fa') ? 'حالت روشن' : 'Light Mode');
+        toggleDarkBtn.classList.replace('btn-light', 'btn-dark');
       } else {
-        body.setAttribute('data-theme', 'dark');
-        toggleDarkBtn.innerHTML = '<i class="bi bi-sun me-1"></i> ' + (body.getAttribute('data-theme') === 'fa' ? 'حالت روشن' : 'Light Mode');
-        toggleDarkBtn.className = 'btn btn-outline-custom toggle-btn';
+        toggleDarkBtn.innerHTML = '<i class="bi bi-moon"></i> ' + (document.body.classList.contains('language-fa') ? 'حالت تاریک' : 'Dark Mode');
+        toggleDarkBtn.classList.replace('btn-dark', 'btn-light');
       }
     });
 
     // Language Toggle
     const toggleLangBtn = document.getElementById('toggleLanguage');
     toggleLangBtn.addEventListener('click', () => {
-      const body = document.body;
-      const isFa = body.getAttribute('data-theme') === 'fa';
-      
-      if (isFa) {
-        body.setAttribute('data-theme', 'en');
-        document.documentElement.setAttribute('lang', 'en');
-        document.documentElement.setAttribute('dir', 'ltr');
-        toggleLangBtn.innerHTML = '<i class="bi bi-translate me-1"></i> فارسی';
-        // Update dark button if dark mode
-        const isDark = body.getAttribute('data-theme') === 'dark'; // Wait, data-theme is now dual purpose, but for simplicity
-        if (document.body.getAttribute('data-theme') !== 'dark') { // Adjust based on actual dark
-          toggleDarkBtn.innerHTML = '<i class="bi bi-moon me-1"></i> Dark Mode';
-        } else {
-          toggleDarkBtn.innerHTML = '<i class="bi bi-sun me-1"></i> Light Mode';
-        }
-      } else {
-        body.setAttribute('data-theme', 'fa');
+      if (document.body.classList.contains('language-en')) {
+        document.body.classList.remove('language-en');
+        document.body.classList.add('language-fa');
         document.documentElement.setAttribute('lang', 'fa');
         document.documentElement.setAttribute('dir', 'rtl');
-        toggleLangBtn.innerHTML = '<i class="bi bi-translate me-1"></i> English';
-        if (document.body.getAttribute('data-theme') !== 'dark') {
-          toggleDarkBtn.innerHTML = '<i class="bi bi-moon me-1"></i> حالت تاریک';
+        toggleLangBtn.innerHTML = '<i class="bi bi-translate"></i> English';
+        
+        // Update dark button text
+        if (document.body.classList.contains('dark-mode')) {
+          toggleDarkBtn.innerHTML = '<i class="bi bi-brightness-high"></i> حالت روشن';
         } else {
-          toggleDarkBtn.innerHTML = '<i class="bi bi-sun me-1"></i> حالت روشن';
+          toggleDarkBtn.innerHTML = '<i class="bi bi-moon"></i> حالت تاریک';
+        }
+      } else {
+        document.body.classList.remove('language-fa');
+        document.body.classList.add('language-en');
+        document.documentElement.setAttribute('lang', 'en');
+        document.documentElement.setAttribute('dir', 'ltr');
+        toggleLangBtn.innerHTML = '<i class="bi bi-translate"></i> فارسی';
+        
+        // Update dark button text
+        if (document.body.classList.contains('dark-mode')) {
+          toggleDarkBtn.innerHTML = '<i class="bi bi-brightness-high"></i> Light Mode';
+        } else {
+          toggleDarkBtn.innerHTML = '<i class="bi bi-moon"></i> Dark Mode';
         }
       }
+      
+      // Update clock with new language
+      updateClock();
     });
-
-    // Note: For dark mode in Persian, we use data-theme="dark" independently, but toggles update accordingly.
-    // To handle dark in both langs, we can add a separate class or attribute, but for minimalism, we override in CSS with [data-theme="dark"].
   </script>
 </body>
-
 </html>
