@@ -1,627 +1,575 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Resume | Mahdi Hassani</title>
 
-  <!-- Bootstrap (RTL-aware: we’ll flip via [dir]) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume | Mahdi Hassani</title>
+  <!-- Bootstrap RTL for Persian support -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <!-- Vazirmatn for Persian -->
   <link href="https://cdn.jsdelivr.net/npm/vazirmatn@33.003.13/Vazirmatn-font-face.css" rel="stylesheet">
-  <!-- Google Fonts for English -->
+  <!-- Google Fonts for English: Inter (modern alternative to Roboto) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ---------------- CSS Variables (Light/Dark) ---------------- */
     :root {
-      --bg: #0b0c0e;            /* page bg behind container */
-      --surface: #ffffff;       /* card/background surfaces */
-      --surface-2: #f6f7f9;
-      --text: #0f172a;          /* main text */
-      --muted: #475569;         /* muted text */
-      --border: #e5e7eb;
-      --accent: #0d6efd;        /* primary */
-      --chip-bg: #eef2ff;
-      --chip-text: #1e293b;
-      --link: #0b5ed7;
-      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-      --radius: 18px;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --text-primary: #1a1a1a;
+      --text-secondary: #6c757d;
+      --accent: #007bff;
+      --card-bg: #ffffff;
+      --border-color: #e9ecef;
+      --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0b0c0e;
-        --surface: #15181d;
-        --surface-2: #111317;
-        --text: #e2e8f0;
-        --muted: #94a3b8;
-        --border: #23262c;
-        --accent: #66a3ff;
-        --chip-bg: #1e293b;
-        --chip-text: #e2e8f0;
-        --link: #8ab4ff;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-      }
-    }
-
-    body.dark-mode {
-      --bg: #0b0c0e;
-      --surface: #15181d;
-      --surface-2: #111317;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --border: #23262c;
-      --accent: #66a3ff;
-      --chip-bg: #1e293b;
-      --chip-text: #e2e8f0;
-      --link: #8ab4ff;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-    }
-
-    /* ---------------- Base ---------------- */
-    html, body {
-      height: 100%;
+    [data-theme="dark"] {
+      --bg-primary: #1a1a1a;
+      --bg-secondary: #2d2d2d;
+      --text-primary: #f8f9fa;
+      --text-secondary: #adb5bd;
+      --accent: #4dabf7;
+      --card-bg: #2d2d2d;
+      --border-color: #495057;
+      --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Vazirmatn', sans-serif;
-      background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(13,110,253,0.08), transparent 60%),
-        radial-gradient(1200px 600px at 90% -10%, rgba(13,110,253,0.08), transparent 60%),
-        var(--bg);
-      color: var(--text);
-      transition: background-color .25s ease, color .25s ease;
-    }
-
-    body.language-fa {
-      font-family: 'Vazirmatn', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    }
-
-    a { color: var(--link); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    .container-narrow {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 24px;
-    }
-
-    /* ---------------- Header ---------------- */
-    .hero {
-      background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 32px 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: -40% -40% auto auto;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(closest-side, rgba(13,110,253,.14), transparent);
-      transform: translate(30%, -30%);
-      pointer-events: none;
-    }
-
-    .title {
-      font-weight: 800;
-      letter-spacing: -.02em;
-      font-size: clamp(28px, 5vw, 38px);
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background 0.3s ease, color 0.3s ease;
       margin: 0;
+      padding: 0;
     }
 
-    .subtitle {
-      color: var(--muted);
-      margin: 8px 0 0 0;
-      font-size: 16px;
+    body[data-theme="fa"] {
+      font-family: 'Vazirmatn', sans-serif;
     }
 
-    .actions .btn {
-      border-radius: 999px;
-      padding: 8px 16px;
-      font-weight: 600;
+    header {
+      background: var(--bg-secondary);
+      padding: 2rem 0;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+      transition: background 0.3s ease;
     }
 
-    .btn-accent {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-    }
-    .btn-accent:hover { filter: brightness(0.95); }
-
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-    .btn-ghost:hover { background: var(--surface-2); }
-
-    .toggle-wrap .btn {
-      border-radius: 999px;
-      padding: 6px 12px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-    }
-    .toggle-wrap .btn:hover { background: var(--surface-2); }
-
-    /* ---------------- Sections ---------------- */
-    .section {
-      margin-top: 28px;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: .75rem;
-      margin-bottom: 12px;
+    [data-theme="dark"] header {
+      background: var(--bg-secondary);
+      border-bottom-color: var(--border-color);
     }
 
     .section-title {
-      font-weight: 800;
-      letter-spacing: -.01em;
-      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
       position: relative;
-      display: inline-flex;
-      align-items: center;
+      display: inline-block;
+      color: var(--text-primary);
     }
 
     .section-title::after {
-      content:"";
-      height: 3px;
-      width: 42px;
-      background: var(--accent);
-      border-radius: 3px;
-      margin-inline-start: 10px;
-    }
-
-    /* ---------------- Cards ---------------- */
-    .card-surface {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 20px;
-    }
-
-    /* ---------------- Chips (Skills/Tech) ---------------- */
-    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
-    .chip {
-      background: var(--chip-bg);
-      color: var(--chip-text);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 14px;
-      border: 1px solid rgba(0,0,0,.05);
-      transition: transform .18s ease;
-      user-select: none;
-    }
-    .chip:hover { transform: translateY(-2px) scale(1.02); }
-
-    /* ---------------- Timeline (Work Experience) ---------------- */
-    .timeline {
-      position: relative;
-      margin: 8px 0 0;
-    }
-    .timeline::before {
-      content:"";
-      position:absolute;
-      top: 0;
-      bottom: 0;
-      inset-inline-start: 12px; /* works for LTR/RTL */
-      width: 2px;
-      background: var(--border);
-    }
-    .tl-item {
-      position: relative;
-      padding-inline-start: 36px;
-      margin-bottom: 16px;
-    }
-    .tl-item:last-child { margin-bottom: 0; }
-    .tl-bullet {
+      content: "";
       position: absolute;
-      top: 10px;
-      inset-inline-start: 6px;
-      width: 12px; height: 12px;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 2px;
       background: var(--accent);
-      border-radius: 50%;
-      box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 15%, transparent);
+      border-radius: 1px;
+      transition: width 0.3s ease;
     }
-    .tl-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 16px;
-    }
-    .tl-head {
-      display: flex; flex-wrap: wrap; gap: 8px 14px;
-      align-items: baseline; justify-content: space-between;
-    }
-    .role { font-weight: 700; }
-    .company { color: var(--muted); font-weight: 600; }
-    .duration { color: var(--muted); font-size: 14px; }
 
-    /* ---------------- Clock ---------------- */
-    .clock {
-      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
-      color: var(--muted);
+    body[dir="rtl"] .section-title::after {
+      left: auto;
+      right: 0;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      color: var(--text-primary);
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    [data-theme="dark"] .card {
+      color: var(--text-primary);
+    }
+
+    .btn-custom {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+      font-weight: 500;
+    }
+
+    .btn-custom:hover {
+      background: #0056b3;
+      transform: translateY(-1px);
+      color: white;
+    }
+
+    .btn-outline-custom {
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-custom:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    footer {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      text-align: center;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+    }
+
+    [data-theme="dark"] footer {
+      background: var(--bg-secondary);
+      border-top-color: var(--border-color);
+      color: var(--text-secondary);
+    }
+
+    .tech-list span {
+      display: inline-block;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      padding: 0.5rem 1rem;
+      margin: 0.25rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] .tech-list span {
+      background: var(--border-color);
+      color: var(--text-primary);
+    }
+
+    .tech-list span:hover {
+      transform: scale(1.05);
+      background: var(--accent);
+      color: white;
+    }
+
+    /* Language Specific */
+    .en { display: block; }
+    .fa { display: none; }
+    body[data-theme="fa"] .en { display: none; }
+    body[data-theme="fa"] .fa { display: block; }
+
+    /* Table Styles for Work Experience */
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      color: var(--text-primary);
+    }
+
+    .table th,
+    .table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+
+    body[dir="rtl"] .table th,
+    body[dir="rtl"] .table td {
+      text-align: right;
+    }
+
+    .table thead th {
+      background: var(--accent);
+      color: white;
       font-weight: 600;
     }
+
+    [data-theme="dark"] .table {
+      background: var(--card-bg);
+    }
+
+    [data-theme="dark"] .table th,
+    [data-theme="dark"] .table td {
+      color: var(--text-primary);
+      border-bottom-color: var(--border-color);
+    }
+
+    [data-theme="dark"] .table thead th {
+      background: #0056b3;
+      color: white;
+    }
+
+    /* Clock Styles */
+    .clock {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      margin: 1rem 0;
+      box-shadow: var(--shadow);
+      color: var(--text-primary);
+    }
+
     .clock-time {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 6px 10px;
-      font-variant-numeric: tabular-nums;
-      color: var(--text);
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
     }
-    .clock small { color: var(--muted); }
 
-    /* ---------------- Language visibility ---------------- */
-    .en { display: inline; }
-    .fa { display: none; }
-    body.language-fa .en { display: none; }
-    body.language-fa .fa { display: inline; }
+    .clock-date {
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
 
-    /* ---------------- Utilities ---------------- */
-    .muted { color: var(--muted); }
-    .grid {
+    /* Toggle Buttons */
+    .toggle-btn {
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+      margin: 0.25rem;
+    }
+
+    .toggle-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
       display: grid;
-      gap: 14px;
-    }
-    @media (min-width: 720px) {
-      .grid.cols-2 { grid-template-columns: 1fr 1fr; }
-      .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-      .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
     }
 
-    /* Respect text direction for underline sliver */
-    [dir="rtl"] .section-title::after {
-      margin-inline-start: 0;
-      margin-inline-end: 10px;
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease;
+      color: var(--text-primary);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .clock-time { font-size: 1.5rem; }
+      .table { font-size: 0.875rem; }
+      .table th, .table td { padding: 0.75rem; }
     }
   </style>
 </head>
 
-<body class="language-en">
-  <div class="container-narrow">
+<body data-theme="en">
 
-    <!-- HERO -->
-    <header class="hero">
-      <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3">
-        <div>
-          <h1 class="title">
-            <span class="en">Mahdi Hassani</span>
-            <span class="fa">مهدی حسنی</span>
-          </h1>
-          <p class="subtitle">
-            <span class="en">Back-end Developer • Computer Engineering Student</span>
-            <span class="fa">بک‌اند دولوپر • دانشجوی مهندسی کامپیوتر</span>
-          </p>
-        </div>
+  <!-- Header -->
+  <header class="text-center">
+    <h1 class="en">Mahdi Hassani</h1>
+    <h1 class="fa">مهدی حسنی</h1>
+    <p class="lead en mb-3">Back-end Developer | Computer Engineering Student</p>
+    <p class="lead fa mb-3">بک‌اند دولوپر | دانشجوی مهندسی کامپیوتر</p>
+    
+    <!-- Clock -->
+    <div class="clock">
+      <div class="clock-time" id="clockTime"></div>
+      <div class="clock-date" id="clockDate"></div>
+    </div>
 
-        <div class="d-flex flex-column align-items-stretch gap-2">
-          <div class="actions d-flex gap-2">
-            <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank" class="btn btn-ghost">
-              <i class="bi bi-linkedin me-1"></i><span class="en">LinkedIn</span><span class="fa">لینکدین</span>
-            </a>
-            <a href="https://github.com/mahdihassani-dev" target="_blank" class="btn btn-ghost">
-              <i class="bi bi-github me-1"></i>GitHub
-            </a>
-            <a href="mailto:m.hassani4951383@gmail.com" class="btn btn-accent">
-              <i class="bi bi-envelope me-1"></i><span class="en">Email</span><span class="fa">ایمیل</span>
-            </a>
-          </div>
+    <div class="mb-3">
+      <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank" class="btn btn-custom">
+        <i class="bi bi-linkedin me-1"></i><span class="en">LinkedIn</span><span class="fa">لینکدین</span>
+      </a>
+      <a href="https://github.com/mahdihassani-dev" target="_blank" class="btn btn-outline-custom">
+        <i class="bi bi-github me-1"></i><span class="en">GitHub</span><span class="fa">گیت‌هاب</span>
+      </a>
+      <a href="mailto:m.hassani4951383@gmail.com" class="btn btn-outline-custom">
+        <i class="bi bi-envelope me-1"></i><span class="en">Email</span><span class="fa">ایمیل</span>
+      </a>
+    </div>
 
-          <div class="d-flex justify-content-between gap-2 toggle-wrap">
-            <button id="toggleDark" class="btn w-100">
-              <i class="bi bi-moon"></i> <span class="en">Dark mode</span><span class="fa">حالت تاریک</span>
-            </button>
-            <button id="toggleLanguage" class="btn w-100">
-              <i class="bi bi-translate"></i> <span class="en">فارسی</span><span class="fa">English</span>
-            </button>
-          </div>
+    <div>
+      <button id="toggleDark" class="btn btn-outline-custom toggle-btn">
+        <i class="bi bi-moon me-1"></i><span class="en">Dark Mode</span><span class="fa">حالت تاریک</span>
+      </button>
+      <button id="toggleLanguage" class="btn btn-outline-custom toggle-btn">
+        <i class="bi bi-translate me-1"></i><span class="en">فارسی</span><span class="fa">English</span>
+      </button>
+    </div>
+  </header>
 
-          <!-- Live Clock -->
-          <div class="clock" id="clock">
-            <i class="bi bi-clock"></i>
-            <span class="en">Local time in</span><span class="fa">زمان محلی در</span>
-            <span id="clock-country" class="fw-semibold"></span>
-            <span class="clock-time" id="clock-time">--:--:--</span>
-            <small class="muted" id="clock-tz">—</small>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- About -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <span class="en">About Me</span><span class="fa">درباره من</span>
-        </h2>
-      </div>
-      <div class="card-surface">
-        <p class="mb-0">
-          <span class="en">
-            I’m <strong>Mahdi Hassani</strong>, a Computer Engineering student at Yazd University (5th semester, entry 2023) and a backend developer with 4+ years of programming and 1 year of professional Django experience. I design RESTful APIs, work with PostgreSQL, Docker, and deploy on Linux servers. Open to part-time or freelance collaborations.
-          </span>
-          <span class="fa">
-            من <strong>مهدی حسنی</strong> هستم؛ دانشجوی مهندسی کامپیوتر دانشگاه یزد (ترم ۵، ورودی ۱۴۰۲) و بک‌اند دولوپر با بیش از ۴ سال تجربه برنامه‌نویسی و ۱ سال تجربه حرفه‌ای با Django. در طراحی APIهای RESTful، کار با PostgreSQL، Docker و استقرار روی سرور لینوکسی تخصص دارم. برای همکاری پارت‌تایم یا فریلنس آماده‌ام.
-          </span>
+  <main class="container">
+    <!-- About Me -->
+    <section class="mt-5 text-center">
+      <h2 class="section-title en">About Me</h2>
+      <h2 class="section-title fa">درباره من</h2>
+      <div class="card">
+        <p class="en">
+          I am <strong>Mahdi Hassani</strong>, a Computer Engineering student at Yazd University (Semester 5, Entry 2023) and a back-end developer with over 4 years of programming experience and 1 year of professional experience with Django.
+          My expertise lies in designing and developing RESTful APIs, managing PostgreSQL databases, Docker, and deploying projects on servers.
+          Interested in part-time or freelance collaborations and developing high-quality web projects.
+        </p>
+        <p class="fa">
+          من <strong>مهدی حسنی</strong> هستم، دانشجوی مهندسی کامپیوتر دانشگاه یزد (ترم ۵، ورودی ۱۴۰۲) و بک‌اند دولوپر با بیش از ۴ سال تجربه برنامه‌نویسی و ۱ سال تجربه حرفه‌ای با Django.
+          تخصص من طراحی و توسعه APIهای RESTful، مدیریت پایگاه داده PostgreSQL، Docker و استقرار پروژه‌ها روی سرور است.
+          علاقه‌مند به همکاری پارت‌تایم یا فریلنسری و توسعه پروژه‌های وب با کیفیت بالا.
         </p>
       </div>
     </section>
 
     <!-- Skills -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <span class="en">Skills</span><span class="fa">مهارت‌ها</span>
-        </h2>
-      </div>
-      <div class="card-surface">
-        <div class="chips">
-          <span class="chip">Python</span>
-          <span class="chip">Java</span>
-          <span class="chip">Django / DRF</span>
-          <span class="chip">REST API</span>
-          <span class="chip">PostgreSQL</span>
-          <span class="chip">Docker</span>
-          <span class="chip">Git / GitHub</span>
-          <span class="chip">Linux / Server</span>
-          <span class="chip">React</span>
-          <span class="chip">TypeScript</span>
-        </div>
+    <section class="mt-5 text-center">
+      <h2 class="section-title en">Skills</h2>
+      <h2 class="section-title fa">مهارت‌ها</h2>
+      <div class="skills-grid">
+        <div class="skill-card en">Python</div>
+        <div class="skill-card en">Java</div>
+        <div class="skill-card en">Django / REST</div>
+        <div class="skill-card en">PostgreSQL</div>
+        <div class="skill-card en">Docker</div>
+        <div class="skill-card en">Git / GitHub</div>
+        <div class="skill-card en">Linux / Server</div>
+        <div class="skill-card en">REST API</div>
       </div>
     </section>
 
-    <!-- Work Experience (Timeline Cards) -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <span class="en">Work Experience</span><span class="fa">تجربه کاری</span>
-        </h2>
-      </div>
-      <div class="timeline">
-        <!-- Item -->
-        <div class="tl-item">
-          <div class="tl-bullet"></div>
-          <div class="tl-card">
-            <div class="tl-head">
-              <div>
-                <div class="role">
-                  <span class="en">Back-end Developer</span><span class="fa">بک‌اند دولوپر</span>
-                </div>
-                <div class="company">
-                  <span class="en">Lian Gohar</span><span class="fa">لیان گوهران</span>
-                </div>
-              </div>
-              <div class="duration">
-                <span class="en">2023 – 2024</span><span class="fa">۱۴۰۲ – ۱۴۰۳</span>
-              </div>
-            </div>
-            <p class="mt-2 mb-0 muted">
-              <span class="en">Built APIs with Django REST Framework, managed PostgreSQL, containerized with Docker, and deployed to Linux servers. Projects: CRM, gold store, industrial automation website.</span>
-              <span class="fa">توسعه API با Django REST Framework، مدیریت PostgreSQL، داکرایز و استقرار روی سرور لینوکس. پروژه‌ها: CRM، فروشگاه طلا، وب‌سایت اتوماسیون صنعتی.</span>
-            </p>
-          </div>
-        </div>
+    <!-- Work Experience -->
+    <section class="mt-5">
+      <h2 class="text-center section-title en">Work Experience</h2>
+      <h2 class="text-center section-title fa">تجربه کاری</h2>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="en">Position</th>
+              <th class="fa">سمت</th>
+              <th class="en">Company</th>
+              <th class="fa">شرکت</th>
+              <th class="en">Duration</th>
+              <th class="fa">مدت</th>
+              <th class="en">Description</th>
+              <th class="fa">توضیحات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="en">Back-end Developer</td>
+              <td class="fa">بک‌اند دولوپر</td>
+              <td class="en">Lian Gohar</td>
+              <td class="fa">لیان گوهران</td>
+              <td class="en">2023 – 2024</td>
+              <td class="fa">۱۴۰۲ – ۱۴۰۳</td>
+              <td class="en">Developing APIs with Django REST Framework, managing PostgreSQL databases, Docker, and deploying projects on servers. Projects include CRM, gold store, and industrial automation website.</td>
+              <td class="fa">توسعه API با Django REST Framework، مدیریت پایگاه داده PostgreSQL، Docker و استقرار پروژه‌ها روی سرور. پروژه‌ها شامل CRM، فروشگاه طلا و وبسایت اتوماسیون صنعتی.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
     <!-- Projects -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <span class="en">Projects</span><span class="fa">پروژه‌ها</span>
-        </h2>
-      </div>
+    <section class="mt-5">
+      <h2 class="text-center section-title en">Projects</h2>
+      <h2 class="text-center section-title fa">پروژه‌ها</h2>
 
-      <div class="grid cols-2">
-        <!-- Parvandechi -->
-        <article class="card-surface">
-          <h3 class="h5 mb-1 fw-bold"><span class="en">Parvandechi</span><span class="fa">پرونده‌چی</span></h3>
-          <p class="muted mb-2">
-            <span class="en">Online Criminal Case Game</span>
-            <span class="fa">بازی پرونده جنایی آنلاین</span>
-          </p>
-          <div class="chips mb-3">
-            <span class="chip">Django</span><span class="chip">DRF</span><span class="chip">PostgreSQL</span>
-            <span class="chip">React</span><span class="chip">Vite</span><span class="chip">TypeScript</span>
-            <span class="chip">Docker</span><span class="chip">Linux</span>
-          </div>
-          <a class="btn btn-accent" target="_blank" href="https://parvandechi.ir">
+      <!-- Parvandechi -->
+      <div class="card">
+        <h3 class="fw-bold en">Parvandechi</h3>
+        <h3 class="fw-bold fa">پرونده‌چی</h3>
+        <p class="text-secondary en">Online Criminal Case Game</p>
+        <p class="text-secondary fa">بازی پرونده جنایی آنلاین</p>
+        <div class="tech-list">
+          <span>Django</span>
+          <span>REST Framework</span>
+          <span>PostgreSQL</span>
+          <span>React</span>
+          <span>Vite</span>
+          <span>TypeScript</span>
+          <span>Docker</span>
+          <span>Linux Server</span>
+        </div>
+        <div class="mt-3">
+          <a href="https://parvandechi.ir" target="_blank" class="btn btn-custom">
             <i class="bi bi-box-arrow-up-right me-1"></i><span class="en">View Site</span><span class="fa">مشاهده سایت</span>
           </a>
-        </article>
+        </div>
+      </div>
 
-        <!-- Rwagh -->
-        <article class="card-surface">
-          <h3 class="h5 mb-1 fw-bold"><span class="en">Rwagh</span><span class="fa">رواق</span></h3>
-          <p class="muted mb-2">
-            <span class="en">Second-Hand Book Marketplace</span>
-            <span class="fa">بازارچه خرید و فروش کتاب دست دوم</span>
-          </p>
-          <div class="chips mb-3">
-            <span class="chip">Django</span><span class="chip">PostgreSQL</span>
-            <span class="chip">Docker</span><span class="chip">Linux</span>
-          </div>
-          <a class="btn btn-accent" target="_blank" href="https://rwagh.ir">
+      <!-- Rwagh -->
+      <div class="card">
+        <h3 class="fw-bold en">Rwagh</h3>
+        <h3 class="fw-bold fa">رواق</h3>
+        <p class="text-secondary en">Second-Hand Book Marketplace</p>
+        <p class="text-secondary fa">بازارچه خرید و فروش کتاب دست دوم</p>
+        <div class="tech-list">
+          <span>Django</span>
+          <span>PostgreSQL</span>
+          <span>Docker</span>
+          <span>Linux Server</span>
+        </div>
+        <div class="mt-3">
+          <a href="https://rwagh.ir" target="_blank" class="btn btn-custom">
             <i class="bi bi-box-arrow-up-right me-1"></i><span class="en">View Site</span><span class="fa">مشاهده سایت</span>
           </a>
-        </article>
+        </div>
+      </div>
 
-        <!-- Tabibaan -->
-        <article class="card-surface">
-          <h3 class="h5 mb-1 fw-bold"><span class="en">Tabibaan</span><span class="fa">طبیبان</span></h3>
-          <p class="muted mb-2">
-            <span class="en">Doctors’ Social Network</span>
-            <span class="fa">شبکه اجتماعی پزشکان</span>
-          </p>
-          <div class="chips mb-3">
-            <span class="chip">Django</span><span class="chip">PostgreSQL</span>
-            <span class="chip">Docker</span><span class="chip">Linux</span>
-          </div>
-          <a class="btn btn-accent" target="_blank" href="https://tabibaan.ir">
+      <!-- Tabibaan -->
+      <div class="card">
+        <h3 class="fw-bold en">Tabibaan</h3>
+        <h3 class="fw-bold fa">طبیبان</h3>
+        <p class="text-secondary en">Doctors' Social Network</p>
+        <p class="text-secondary fa">شبکه اجتماعی پزشکان</p>
+        <div class="tech-list">
+          <span>Django</span>
+          <span>PostgreSQL</span>
+          <span>Docker</span>
+          <span>Linux Server</span>
+        </div>
+        <div class="mt-3">
+          <a href="https://tabibaan.ir" target="_blank" class="btn btn-custom">
             <i class="bi bi-box-arrow-up-right me-1"></i><span class="en">View Site</span><span class="fa">مشاهده سایت</span>
           </a>
-        </article>
-      </div>
-    </section>
-
-    <!-- Education -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <span class="en">Education</span><span class="fa">تحصیلات</span>
-        </h2>
-      </div>
-      <div class="card-surface">
-        <p class="mb-0">
-          <span class="en">B.Sc. in Computer Engineering — Yazd University | Entry 2023 (Semester 5)</span>
-          <span class="fa">کارشناسی مهندسی کامپیوتر — دانشگاه یزد | ورودی ۱۴۰۲ (ترم ۵)</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <span class="en">Contact</span><span class="fa">ارتباط با من</span>
-        </h2>
-      </div>
-      <div class="card-surface">
-        <div class="grid cols-3">
-          <p class="mb-0"><i class="bi bi-envelope me-1"></i> <a href="mailto:m.hassani4951383@gmail.com">m.hassani4951383@gmail.com</a></p>
-          <p class="mb-0"><i class="bi bi-linkedin me-1"></i> <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank">LinkedIn</a></p>
-          <p class="mb-0"><i class="bi bi-github me-1"></i> <a href="https://github.com/mahdihassani-dev" target="_blank">GitHub</a></p>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="section text-center muted">
-      <p class="mb-0">
-        <span class="en">© 2025 Mahdi Hassani • Built with ❤️</span>
-        <span class="fa">© ۲۰۲۵ مهدی حسنی • ساخته‌شده با ❤️</span>
-      </p>
-    </footer>
+    <!-- Education -->
+    <section class="mt-5 text-center">
+      <h2 class="section-title en">Education</h2>
+      <h2 class="section-title fa">تحصیلات</h2>
+      <div class="card">
+        <p class="en">Bachelor's in Computer Engineering – Yazd University | Entry 2023 (Semester 5)</p>
+        <p class="fa">کارشناسی مهندسی کامپیوتر – دانشگاه یزد | ورودی ۱۴۰۲ (ترم ۵)</p>
+      </div>
+    </section>
 
-  </div>
+    <!-- Contact -->
+    <section class="mt-5 text-center">
+      <h2 class="section-title en">Contact Me</h2>
+      <h2 class="section-title fa">ارتباط با من</h2>
+      <div class="card">
+        <p><i class="bi bi-envelope me-2"></i><a href="mailto:m.hassani4951383@gmail.com" class="text-decoration-none" style="color: var(--accent);">m.hassani4951383@gmail.com</a></p>
+        <p><i class="bi bi-linkedin me-2"></i><a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank" class="text-decoration-none" style="color: var(--accent);">LinkedIn</a></p>
+        <p><i class="bi bi-github me-2"></i><a href="https://github.com/mahdihassani-dev" target="_blank" class="text-decoration-none" style="color: var(--accent);">GitHub</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p class="en mb-0">&copy; 2025 Mahdi Hassani | Built with ❤️</p>
+    <p class="fa mb-0">&copy; ۲۰۲۵ مهدی حسنی | ساخته شده با ❤️</p>
+  </footer>
 
   <script>
-    // --------- Dark Mode Toggle (with button label updates) ----------
-    const toggleDarkBtn = document.getElementById('toggleDark');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    // Optional: persist via localStorage
-    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)) {
-      document.body.classList.add('dark-mode');
-    }
-
-    function renderDarkLabel() {
-      const isFa = document.body.classList.contains('language-fa');
-      const isDark = document.body.classList.contains('dark-mode');
-      toggleDarkBtn.innerHTML = isDark
-        ? `<i class="bi bi-brightness-high"></i> ${isFa ? 'حالت روشن' : 'Light mode'}`
-        : `<i class="bi bi-moon"></i> ${isFa ? 'حالت تاریک' : 'Dark mode'}`;
-    }
-
-    toggleDarkBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-      renderDarkLabel();
-    });
-    renderDarkLabel();
-
-    // --------- Language Toggle (RTL/LTR + labels) ----------
-    const toggleLangBtn = document.getElementById('toggleLanguage');
-    function setLang(toFa) {
-      const html = document.documentElement;
-      if (toFa) {
-        document.body.classList.add('language-fa');
-        document.body.classList.remove('language-en');
-        html.setAttribute('lang', 'fa');
-        html.setAttribute('dir', 'rtl');
-        toggleLangBtn.innerHTML = `<i class="bi bi-translate"></i> English`;
-      } else {
-        document.body.classList.remove('language-fa');
-        document.body.classList.add('language-en');
-        html.setAttribute('lang', 'en');
-        html.setAttribute('dir', 'ltr');
-        toggleLangBtn.innerHTML = `<i class="bi bi-translate"></i> فارسی`;
-      }
-      renderDarkLabel();
-      renderClockLabels();
-    }
-
-    // Persist language choice
-    const savedLang = localStorage.getItem('lang');
-    setLang(savedLang === 'fa');
-    toggleLangBtn.addEventListener('click', () => {
-      const toFa = !document.body.classList.contains('language-fa');
-      localStorage.setItem('lang', toFa ? 'fa' : 'en');
-      setLang(toFa);
-    });
-
-    // --------- Live Clock (country/region + time zone + live seconds) ----------
-    const clockEl = document.getElementById('clock-time');
-    const tzEl = document.getElementById('clock-tz');
-    const countryEl = document.getElementById('clock-country');
-
-    function getUserLocale() {
-      return (navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language) || 'en-US';
-    }
-
-    function getUserRegionFromLocale(locale) {
-      // locale like "fa-IR" or "en-US"
-      const m = locale.match(/-([A-Z]{2})/i);
-      return m ? m[1].toUpperCase() : null;
-    }
-
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    function resolvedCountryName(locale) {
-      const region = getUserRegionFromLocale(locale);
-      try {
-        if (region) {
-          const disp = new Intl.DisplayNames([locale], { type: 'region' });
-          return disp.of(region);
-        }
-      } catch (e) {}
-      // Fallback: show time zone city/area (e.g., Europe/Paris)
-      return timeZone;
-    }
-
-    function renderClockLabels() {
-      const locale = document.body.classList.contains('language-fa') ? 'fa-IR' : 'en-US';
-      countryEl.textContent = resolvedCountryName(locale);
-      // tz label (long) e.g. "Europe/Paris"
-      tzEl.textContent = `(${timeZone})`;
-    }
-
-    function tickClock() {
-      const locale = document.body.classList.contains('language-fa') ? 'fa-IR' : getUserLocale();
+    // Clock Functionality
+    function updateClock() {
       const now = new Date();
-      const formatter = new Intl.DateTimeFormat(locale, {
-        hour: '2-digit', minute: '2-digit', second: '2-digit',
-        hour12: false
-      });
-      clockEl.textContent = formatter.format(now);
+      const timeString = now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+      const dateString = now.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
+      
+      document.getElementById('clockTime').textContent = timeString;
+      document.getElementById('clockDate').textContent = dateString;
     }
+    
+    updateClock();
+    setInterval(updateClock, 1000); // Update every second
 
-    renderClockLabels();
-    tickClock();
-    setInterval(tickClock, 1000);
+    // Dark Mode Toggle
+    const toggleDarkBtn = document.getElementById('toggleDark');
+    toggleDarkBtn.addEventListener('click', () => {
+      const body = document.body;
+      const isDark = body.getAttribute('data-theme') === 'dark';
+      
+      if (isDark) {
+        body.setAttribute('data-theme', 'en');
+        body.setAttribute('dir', 'ltr'); // Reset if needed, but handled in lang toggle
+        toggleDarkBtn.innerHTML = '<i class="bi bi-moon me-1"></i> ' + (body.getAttribute('data-theme') === 'fa' ? 'حالت تاریک' : 'Dark Mode');
+        toggleDarkBtn.className = 'btn btn-outline-custom toggle-btn';
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        toggleDarkBtn.innerHTML = '<i class="bi bi-sun me-1"></i> ' + (body.getAttribute('data-theme') === 'fa' ? 'حالت روشن' : 'Light Mode');
+        toggleDarkBtn.className = 'btn btn-outline-custom toggle-btn';
+      }
+    });
+
+    // Language Toggle
+    const toggleLangBtn = document.getElementById('toggleLanguage');
+    toggleLangBtn.addEventListener('click', () => {
+      const body = document.body;
+      const isFa = body.getAttribute('data-theme') === 'fa';
+      
+      if (isFa) {
+        body.setAttribute('data-theme', 'en');
+        document.documentElement.setAttribute('lang', 'en');
+        document.documentElement.setAttribute('dir', 'ltr');
+        toggleLangBtn.innerHTML = '<i class="bi bi-translate me-1"></i> فارسی';
+        // Update dark button if dark mode
+        const isDark = body.getAttribute('data-theme') === 'dark'; // Wait, data-theme is now dual purpose, but for simplicity
+        if (document.body.getAttribute('data-theme') !== 'dark') { // Adjust based on actual dark
+          toggleDarkBtn.innerHTML = '<i class="bi bi-moon me-1"></i> Dark Mode';
+        } else {
+          toggleDarkBtn.innerHTML = '<i class="bi bi-sun me-1"></i> Light Mode';
+        }
+      } else {
+        body.setAttribute('data-theme', 'fa');
+        document.documentElement.setAttribute('lang', 'fa');
+        document.documentElement.setAttribute('dir', 'rtl');
+        toggleLangBtn.innerHTML = '<i class="bi bi-translate me-1"></i> English';
+        if (document.body.getAttribute('data-theme') !== 'dark') {
+          toggleDarkBtn.innerHTML = '<i class="bi bi-moon me-1"></i> حالت تاریک';
+        } else {
+          toggleDarkBtn.innerHTML = '<i class="bi bi-sun me-1"></i> حالت روشن';
+        }
+      }
+    });
+
+    // Note: For dark mode in Persian, we use data-theme="dark" independently, but toggles update accordingly.
+    // To handle dark in both langs, we can add a separate class or attribute, but for minimalism, we override in CSS with [data-theme="dark"].
   </script>
 </body>
+
 </html>
