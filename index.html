@@ -4,13 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resume | Mahdi Hassani</title>
-  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <!-- Vazirmatn for Persian -->
   <link href="https://cdn.jsdelivr.net/npm/vazirmatn@33.003.13/Vazirmatn-font-face.css" rel="stylesheet">
-  <!-- Google Fonts: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -179,113 +175,48 @@
       transform: scale(1.05);
       background: rgba(67, 97, 238, 0.2);
     }
-
-    /* Language Specific */
-    .en { display: block; }
-    .fa { display: none; }
-    body.language-fa .en { display: none; }
-    body.language-fa .fa { display: block; }
-
-    /* Modern Table Styles */
-    .timeline {
-      position: relative;
-      padding: 0;
-      list-style: none;
+    
+    /* NEW: Work Experience Styles */
+    .experience-item {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        margin-bottom: 2rem;
+        transition: var(--transition);
+        border-left: 5px solid var(--primary-color);
     }
 
-    .timeline:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: var(--primary-color);
-      left: 50%;
-      margin-left: -2px;
-      border-radius: 10px;
+    body[dir="rtl"] .experience-item {
+        border-left: none;
+        border-right: 5px solid var(--primary-color);
     }
 
-    body[dir="rtl"] .timeline:before {
-      left: auto;
-      right: 50%;
-      margin-right: -2px;
-      margin-left: 0;
+    .experience-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    
+    .dark-mode .experience-item:hover {
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     }
 
-    .timeline-item {
-      position: relative;
-      margin-bottom: 50px;
+    .experience-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
     }
 
-    .timeline-badge {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      background: var(--primary-color);
-      border: 4px solid var(--card-bg);
-      border-radius: 50%;
-      left: 50%;
-      margin-left: -12px;
-      top: 10px;
-      z-index: 2;
+    .job-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
     }
 
-    body[dir="rtl"] .timeline-badge {
-      left: auto;
-      right: 50%;
-      margin-right: -12px;
-      margin-left: 0;
-    }
-
-    .timeline-panel {
-      position: relative;
-      width: 45%;
-      padding: 20px;
-      background: var(--card-bg);
-      border-radius: 15px;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    .timeline-panel:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .timeline-item:nth-child(odd) .timeline-panel {
-      left: 0;
-    }
-
-    .timeline-item:nth-child(even) .timeline-panel {
-      left: 55%;
-    }
-
-    body[dir="rtl"] .timeline-item:nth-child(odd) .timeline-panel {
-      left: auto;
-      right: 0;
-    }
-
-    body[dir="rtl"] .timeline-item:nth-child(even) .timeline-panel {
-      left: auto;
-      right: 55%;
-    }
-
-    .timeline-heading {
-      margin-bottom: 15px;
-    }
-
-    .timeline-title {
-      margin-top: 0;
-      color: var(--primary-color);
-      font-weight: 600;
-    }
-
-    .timeline-body p {
-      margin-bottom: 0;
-      color: var(--text-color);
-    }
-
-    .timeline-date {
+    .job-period {
       display: inline-block;
       padding: 5px 15px;
       background: rgba(67, 97, 238, 0.1);
@@ -293,41 +224,30 @@
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: 500;
-      margin-bottom: 10px;
+      white-space: nowrap;
     }
 
-    .dark-mode .timeline-date {
+    .dark-mode .job-period {
       background: rgba(76, 201, 240, 0.15);
     }
 
-    @media (max-width: 767px) {
-      .timeline:before {
-        left: 40px;
-      }
-      
-      body[dir="rtl"] .timeline:before {
-        left: auto;
-        right: 40px;
-      }
-      
-      .timeline-panel {
-        width: calc(100% - 90px);
-        float: right;
-        left: auto !important;
-        right: auto !important;
-      }
-      
-      .timeline-badge {
-        left: 40px;
-        margin-left: -12px;
-      }
-      
-      body[dir="rtl"] .timeline-badge {
-        left: auto;
-        right: 40px;
-        margin-right: -12px;
-      }
+    .company-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-color);
+        opacity: 0.9;
     }
+    
+    .job-description {
+        margin-bottom: 1.5rem;
+    }
+
+    /* Language Specific */
+    .en { display: block; }
+    .fa { display: none; }
+    body.language-fa .en { display: none; }
+    body.language-fa .fa { display: block; }
 
     /* Real-time Clock */
     .real-time-clock {
@@ -391,26 +311,27 @@
       .section-title {
         font-size: 1.8rem;
       }
+      
+      .job-title {
+          font-size: 1.3rem;
+      }
     }
   </style>
 </head>
 <body class="language-en">
 
-  <!-- Language Toggle Button -->
   <div class="language-toggle" id="toggleLanguage">
     <i class="bi bi-translate"></i>
   </div>
 
-  <!-- Header -->
   <header class="text-center py-5 mb-5">
     <div class="container-custom">
-      <img src="https://github.com/mahdihassani-dev/mahdihassani-dev.github.io/blob/main/photo19835360435.jpg" alt="Profile" class="profile-img rounded-circle">
+      <img src="https://github.com/mahdihassani-dev/mahdihassani-dev.github.io/blob/main/photo19835360435.jpg?raw=true" alt="Profile" class="profile-img rounded-circle">
       <h1 class="en">Mahdi Hassani</h1>
       <h1 class="fa">مهدی حسنی</h1>
       <p class="lead en">Back-end Developer | Computer Engineering Student</p>
       <p class="lead fa">بک‌اند دولوپر | دانشجوی مهندسی کامپیوتر</p>
       
-      <!-- Real-time Clock -->
       <div class="real-time-clock">
         <div id="clock" class="clock-time">00:00:00</div>
         <div id="date" class="clock-date">Loading date...</div>
@@ -436,7 +357,6 @@
   </header>
 
   <main class="container-custom">
-    <!-- About Me -->
     <section class="mb-5 text-center">
       <h2 class="section-title en">About Me</h2>
       <h2 class="section-title fa">درباره من</h2>
@@ -454,7 +374,6 @@
       </div>
     </section>
 
-    <!-- Skills -->
     <section class="mb-5 text-center">
       <h2 class="section-title en">Skills</h2>
       <h2 class="section-title fa">مهارت‌ها</h2>
@@ -470,55 +389,46 @@
       </div>
     </section>
 
-    <!-- Work Experience -->
     <section class="mb-5">
       <h2 class="text-center section-title en">Work Experience</h2>
       <h2 class="text-center section-title fa">تجربه کاری</h2>
       
-      <ul class="timeline mt-4">
-        <li class="timeline-item">
-          <div class="timeline-badge"></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <span class="timeline-date en">2023 – 2024</span>
-              <span class="timeline-date fa">۱۴۰۲ – ۱۴۰۳</span>
-              <h4 class="timeline-title en">Back-end Developer</h4>
-              <h4 class="timeline-title fa">بک‌اند دولوپر</h4>
-              <h5 class="en">Lian Goharan</h5>
-              <h5 class="fa">لیان گوهران</h5>
-            </div>
-            <div class="timeline-body">
-              <p class="en">Developing APIs with Django REST Framework, managing PostgreSQL databases, Docker, and deploying projects on servers. Projects include CRM, gold store, and industrial automation website.</p>
-              <p class="fa">توسعه API با Django REST Framework، مدیریت پایگاه داده PostgreSQL، Docker و استقرار پروژه‌ها روی سرور. پروژه‌ها شامل CRM، فروشگاه طلا و وبسایت اتوماسیون صنعتی.</p>
-            </div>
+      <div class="experience-item">
+        <div class="experience-header">
+          <div>
+            <h3 class="job-title en">Back-end Developer</h3>
+            <h3 class="job-title fa">بک‌اند دولوپر</h3>
           </div>
-        </li>
-        <li class="timeline-item">
-          <div class="timeline-badge"></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <span class="timeline-date en">2022 – 2023</span>
-              <span class="timeline-date fa">۱۴۰۱ – ۱۴۰۲</span>
-              <h4 class="timeline-title en">Junior Developer</h4>
-              <h4 class="timeline-title fa">توسعه‌دهنده مبتدی</h4>
-              <h5 class="en">Tech Solutions</h5>
-              <h5 class="fa">راهکارهای فناوری</h5>
-            </div>
-            <div class="timeline-body">
-              <p class="en">Worked on various web development projects, focusing on backend development with Python and Django. Collaborated with team members to deliver high-quality software solutions.</p>
-              <p class="fa">کار روی پروژه‌های مختلف توسعه وب، با تمرکز بر توسعه بک‌اند با پایتون و جنگو. همکاری با اعضای تیم برای ارائه راه‌حل‌های نرم‌افزاری با کیفیت بالا.</p>
-            </div>
-          </div>
-        </li>
-      </ul>
+          <span class="job-period en">2023 – 2024</span>
+          <span class="job-period fa">۱۴۰۲ – ۱۴۰۳</span>
+        </div>
+        
+        <h4 class="company-name en"><i class="bi bi-building"></i> Lian Gohar</h4>
+        <h4 class="company-name fa"><i class="bi bi-building"></i> لیان گوهران</h4>
+
+        <div class="job-description">
+            <p class="en">Developing APIs with Django REST Framework, managing PostgreSQL databases, Docker, and deploying projects on servers. Projects include CRM, gold store, and industrial automation website.</p>
+            <p class="fa">توسعه API با Django REST Framework، مدیریت پایگاه داده PostgreSQL، Docker و استقرار پروژه‌ها روی سرور. پروژه‌ها شامل CRM، فروشگاه طلا و وبسایت اتوماسیون صنعتی.</p>
+        </div>
+        
+        <h5 class="en">Technologies Used:</h5>
+        <h5 class="fa">فناوری‌های استفاده شده:</h5>
+        <div class="tech-list">
+          <span>Django</span>
+          <span>Django REST Framework</span>
+          <span>PostgreSQL</span>
+          <span>Docker</span>
+          <span>Linux Server</span>
+          <span>RESTful APIs</span>
+        </div>
+      </div>
+      
     </section>
 
-    <!-- Projects -->
     <section class="mb-5">
       <h2 class="text-center section-title en">Projects</h2>
       <h2 class="text-center section-title fa">پروژه‌ها</h2>
 
-      <!-- Parvandechi -->
       <div class="card-custom mb-4">
         <h3 class="fw-bold en">Parvandechi</h3>
         <h3 class="fw-bold fa">پرونده‌چی</h3>
@@ -541,7 +451,6 @@
         </div>
       </div>
 
-      <!-- Rwagh -->
       <div class="card-custom mb-4">
         <h3 class="fw-bold en">Rwagh</h3>
         <h3 class="fw-bold fa">رواق</h3>
@@ -560,7 +469,6 @@
         </div>
       </div>
 
-      <!-- Tabibaan -->
       <div class="card-custom mb-4">
         <h3 class="fw-bold en">Tabibaan</h3>
         <h3 class="fw-bold fa">طبیبان</h3>
@@ -580,7 +488,6 @@
       </div>
     </section>
 
-    <!-- Education -->
     <section class="mb-5 text-center">
       <h2 class="section-title en">Education</h2>
       <h2 class="section-title fa">تحصیلات</h2>
@@ -590,7 +497,6 @@
       </div>
     </section>
 
-    <!-- Contact -->
     <section class="mb-5 text-center">
       <h2 class="section-title en">Contact Me</h2>
       <h2 class="section-title fa">ارتباط با من</h2>
@@ -602,7 +508,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="text-center">
     <p class="en">&copy; 2025 Mahdi Hassani | Built with ❤️</p>
     <p class="fa">&copy; ۱۴۰۴ مهدی حسنی | ساخته شده با ❤️</p>
