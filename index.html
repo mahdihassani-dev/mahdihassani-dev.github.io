@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>رزومه | Resume | مهدی حسنی</title>
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Resume | Mahdi Hassani</title>
+  <!-- Bootstrap RTL for Persian support, but we'll handle dir dynamically -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <!-- Vazirmatn Font -->
+  <!-- Vazirmatn for Persian -->
   <link href="https://cdn.jsdelivr.net/npm/vazirmatn@33.003.13/Vazirmatn-font-face.css" rel="stylesheet">
+  <!-- Google Fonts for English: Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     body {
-      font-family: 'Vazirmatn', sans-serif;
+      font-family: 'Roboto', sans-serif; /* Default English font */
       background: linear-gradient(135deg, #f8f9fa, #e9ecef);
       color: #212529;
       transition: background 0.3s, color 0.3s;
+    }
+    body.language-fa {
+      font-family: 'Vazirmatn', sans-serif; /* Persian font */
     }
     body.dark-mode {
       background: linear-gradient(135deg, #212529, #343a40);
@@ -28,6 +33,7 @@
       border-bottom-left-radius: 25px;
       border-bottom-right-radius: 25px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+      transition: all 0.3s ease;
     }
     .section-title {
       font-weight: 700;
@@ -39,116 +45,139 @@
     .section-title::after {
       content: "";
       position: absolute;
-      left: 0;
+      left: 0; /* For LTR */
       bottom: 0;
       width: 50%;
       height: 3px;
       background: #0d6efd;
       border-radius: 3px;
+      transition: all 0.3s;
+    }
+    body[dir="rtl"] .section-title::after {
+      left: auto;
+      right: 0;
     }
     .card {
       border: none;
       border-radius: 20px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
     }
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
     }
     .btn-custom {
-      background: #0d6efd;
+      background: linear-gradient(135deg, #0d6efd, #0b5ed7);
       color: #fff;
-      border-radius: 25px;
-      padding: 6px 18px;
-      transition: 0.3s;
+      border-radius: 30px;
+      padding: 8px 20px;
+      transition: all 0.3s ease;
     }
-    .btn-custom:hover { background: #0b5ed7; }
+    .btn-custom:hover {
+      background: linear-gradient(135deg, #0b5ed7, #0a58ca);
+      transform: translateY(-2px);
+    }
     footer {
       background: #343a40;
       color: white;
       border-top-left-radius: 25px;
       border-top-right-radius: 25px;
-      padding: 15px;
+      padding: 20px;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.25);
     }
-    /* Dark mode */
+    /* Dark Mode */
     body.dark-mode .card { background: #2c3034; color: #f8f9fa; }
     body.dark-mode footer { background: #212529; }
     .tech-list span {
       display: inline-block;
       background: #e9ecef;
       color: #212529;
-      padding: 4px 10px;
-      margin: 4px;
-      border-radius: 15px;
-      font-size: 0.9rem;
+      padding: 6px 12px;
+      margin: 6px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      transition: all 0.3s;
     }
     body.dark-mode .tech-list span {
       background: #495057;
       color: #f8f9fa;
     }
-    .lang { display: none; }
-    .lang.active { display: block; }
+    .tech-list span:hover {
+      transform: scale(1.1);
+    }
+    /* Language Specific */
+    .en { display: block; }
+    .fa { display: none; }
+    body.language-fa .en { display: none; }
+    body.language-fa .fa { display: block; }
+    /* Modern Enhancements */
+    .row { transition: all 0.3s; }
+    .table { border-radius: 15px; overflow: hidden; }
+    .table thead { background: linear-gradient(135deg, #343a40, #495057); }
+    /* Toggle Buttons */
+    .toggle-btn {
+      border-radius: 30px;
+      padding: 6px 15px;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .toggle-btn:hover {
+      transform: translateY(-2px);
+    }
   </style>
 </head>
-<body>
+<body class="language-en">
 
   <!-- Header -->
   <header class="text-center py-5">
-    <div class="lang fa active">
-      <h1>مهدی حسنی</h1>
-      <p class="lead">بک‌اند دولوپر | دانشجوی مهندسی کامپیوتر</p>
-    </div>
-    <div class="lang en">
-      <h1>Mahdi Hassani</h1>
-      <p class="lead">Back-End Developer | Computer Engineering Student</p>
-    </div>
-
+    <h1 class="en">Mahdi Hassani</h1>
+    <h1 class="fa">مهدی حسنی</h1>
+    <p class="lead en">Back-end Developer | Computer Engineering Student</p>
+    <p class="lead fa">بک‌اند دولوپر | دانشجوی مهندسی کامپیوتر</p>
     <div class="mt-3">
       <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank" class="btn btn-custom mx-1">
-        <i class="bi bi-linkedin"></i> LinkedIn
+        <i class="bi bi-linkedin"></i> <span class="en">LinkedIn</span><span class="fa">لینکدین</span>
       </a>
       <a href="https://github.com/mahdihassani-dev" target="_blank" class="btn btn-dark mx-1">
-        <i class="bi bi-github"></i> GitHub
+        <i class="bi bi-github"></i> <span class="en">GitHub</span><span class="fa">گیت‌هاب</span>
       </a>
       <a href="mailto:m.hassani4951383@gmail.com" class="btn btn-outline-light mx-1">
-        <i class="bi bi-envelope"></i> Email
+        <i class="bi bi-envelope"></i> <span class="en">Email</span><span class="fa">ایمیل</span>
       </a>
     </div>
-
     <div class="mt-3">
-      <button id="toggleDark" class="btn btn-light btn-sm mx-1">
-        <i class="bi bi-moon"></i> Dark Mode
+      <button id="toggleDark" class="btn btn-light toggle-btn mx-1">
+        <i class="bi bi-moon"></i> <span class="en">Dark Mode</span><span class="fa">حالت تاریک</span>
       </button>
-      <button id="toggleLang" class="btn btn-warning btn-sm mx-1">
-        🌐 English / فارسی
+      <button id="toggleLanguage" class="btn btn-outline-light toggle-btn mx-1">
+        <i class="bi bi-translate"></i> <span class="en">فارسی</span><span class="fa">English</span>
       </button>
     </div>
   </header>
 
   <!-- About Me -->
   <section class="container mt-5 text-center">
-    <div class="lang fa active">
-      <h2 class="section-title">درباره من</h2>
-      <div class="card shadow p-4 mt-3">
-        <p>من <strong>مهدی حسنی</strong> هستم، دانشجوی مهندسی کامپیوتر دانشگاه یزد (ترم ۵، ورودی ۱۴۰۲) و بک‌اند دولوپر با بیش از ۴ سال تجربه برنامه‌نویسی و ۱ سال تجربه حرفه‌ای با Django. تخصص من طراحی و توسعه APIهای RESTful، مدیریت پایگاه داده PostgreSQL، Docker و استقرار پروژه‌ها روی سرور است. علاقه‌مند به همکاری پارت‌تایم یا فریلنسری و توسعه پروژه‌های وب با کیفیت بالا.</p>
-      </div>
-    </div>
-    <div class="lang en">
-      <h2 class="section-title">About Me</h2>
-      <div class="card shadow p-4 mt-3">
-        <p>I am <strong>Mahdi Hassani</strong>, a Computer Engineering student at Yazd University (5th semester, admitted in 2023) and a back-end developer with over 4 years of programming experience and 1 year of professional experience with Django. My expertise includes designing and developing RESTful APIs, PostgreSQL database management, Docker, and deploying projects on servers. I am interested in part-time or freelance collaboration and building high-quality web projects.</p>
-      </div>
+    <h2 class="section-title en">About Me</h2>
+    <h2 class="section-title fa">درباره من</h2>
+    <div class="card shadow p-4 mt-3">
+      <p class="en">
+        I am <strong>Mahdi Hassani</strong>, a Computer Engineering student at Yazd University (Semester 5, Entry 2023) and a back-end developer with over 4 years of programming experience and 1 year of professional experience with Django.
+        My expertise lies in designing and developing RESTful APIs, managing PostgreSQL databases, Docker, and deploying projects on servers.
+        Interested in part-time or freelance collaborations and developing high-quality web projects.
+      </p>
+      <p class="fa">
+        من <strong>مهدی حسنی</strong> هستم، دانشجوی مهندسی کامپیوتر دانشگاه یزد (ترم ۵، ورودی ۱۴۰۲) و بک‌اند دولوپر با بیش از ۴ سال تجربه برنامه‌نویسی و ۱ سال تجربه حرفه‌ای با Django.
+        تخصص من طراحی و توسعه APIهای RESTful، مدیریت پایگاه داده PostgreSQL، Docker و استقرار پروژه‌ها روی سرور است.
+        علاقه‌مند به همکاری پارت‌تایم یا فریلنسری و توسعه پروژه‌های وب با کیفیت بالا.
+      </p>
     </div>
   </section>
 
   <!-- Skills -->
   <section class="container mt-5 text-center">
-    <div class="lang fa active">
-      <h2 class="section-title">مهارت‌ها</h2>
-    </div>
-    <div class="lang en">
-      <h2 class="section-title">Skills</h2>
-    </div>
+    <h2 class="section-title en">Skills</h2>
+    <h2 class="section-title fa">مهارت‌ها</h2>
     <div class="row mt-3">
       <div class="col-md-3 col-6 mb-3"><div class="card p-3 shadow-sm">Python</div></div>
       <div class="col-md-3 col-6 mb-3"><div class="card p-3 shadow-sm">Java</div></div>
@@ -163,28 +192,25 @@
 
   <!-- Work Experience -->
   <section class="container mt-5">
-    <div class="lang fa active">
-      <h2 class="text-center section-title">تجربه کاری</h2>
-    </div>
-    <div class="lang en">
-      <h2 class="text-center section-title">Work Experience</h2>
-    </div>
+    <h2 class="text-center section-title en">Work Experience</h2>
+    <h2 class="text-center section-title fa">تجربه کاری</h2>
     <div class="table-responsive mt-3">
       <table class="table table-bordered table-striped shadow">
         <thead class="table-dark text-center">
-          <tr class="lang fa active">
-            <th>سمت</th><th>شرکت</th><th>مدت</th><th>توضیحات</th>
-          </tr>
-          <tr class="lang en">
-            <th>Position</th><th>Company</th><th>Duration</th><th>Description</th>
+          <tr>
+            <th class="en">Position</th><th class="fa">سمت</th>
+            <th class="en">Company</th><th class="fa">شرکت</th>
+            <th class="en">Duration</th><th class="fa">مدت</th>
+            <th class="en">Description</th><th class="fa">توضیحات</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="lang fa active">
-            <td>بک‌اند دولوپر</td><td>لیان گوهران</td><td>۱۴۰۲ – ۱۴۰۳</td><td>توسعه API با Django REST Framework، مدیریت پایگاه داده PostgreSQL، Docker و استقرار پروژه‌ها روی سرور. پروژه‌ها شامل CRM، فروشگاه طلا و وبسایت اتوماسیون صنعتی.</td>
-          </tr>
-          <tr class="lang en">
-            <td>Back-End Developer</td><td>Lian Goharan</td><td>2023 – 2024</td><td>Developed APIs using Django REST Framework, managed PostgreSQL databases, worked with Docker, and deployed projects on servers. Projects included CRM, gold shop, and industrial automation website.</td>
+          <tr>
+            <td class="en">Back-end Developer</td><td class="fa">بک‌اند دولوپر</td>
+            <td class="en">Lian Gohar</td><td class="fa">لیان گوهران</td>
+            <td class="en">2023 – 2024</td><td class="fa">۱۴۰۲ – ۱۴۰۳</td>
+            <td class="en">Developing APIs with Django REST Framework, managing PostgreSQL databases, Docker, and deploying projects on servers. Projects include CRM, gold store, and industrial automation website.</td>
+            <td class="fa">توسعه API با Django REST Framework، مدیریت پایگاه داده PostgreSQL، Docker و استقرار پروژه‌ها روی سرور. پروژه‌ها شامل CRM، فروشگاه طلا و وبسایت اتوماسیون صنعتی.</td>
           </tr>
         </tbody>
       </table>
@@ -193,61 +219,67 @@
 
   <!-- Projects -->
   <section class="container mt-5">
-    <div class="lang fa active">
-      <h2 class="text-center section-title">پروژه‌ها</h2>
-    </div>
-    <div class="lang en">
-      <h2 class="text-center section-title">Projects</h2>
-    </div>
+    <h2 class="text-center section-title en">Projects</h2>
+    <h2 class="text-center section-title fa">پروژه‌ها</h2>
 
     <!-- Parvandechi -->
     <div class="card shadow p-4 mb-4">
-      <div class="lang fa active">
-        <h3 class="fw-bold">پرونده‌چی</h3>
-        <p class="text-muted">بازی پرونده جنایی آنلاین</p>
-        <div class="mt-3"><a href="https://parvandechi.ir" target="_blank" class="btn btn-custom"><i class="bi bi-box-arrow-up-right"></i> مشاهده سایت</a></div>
-      </div>
-      <div class="lang en">
-        <h3 class="fw-bold">Parvandechi</h3>
-        <p class="text-muted">Online Crime Case Game</p>
-        <div class="mt-3"><a href="https://parvandechi.ir" target="_blank" class="btn btn-custom"><i class="bi bi-box-arrow-up-right"></i> Visit Site</a></div>
-      </div>
+      <h3 class="fw-bold en">Parvandechi</h3>
+      <h3 class="fw-bold fa">پرونده‌چی</h3>
+      <p class="text-muted en">Online Criminal Case Game</p>
+      <p class="text-muted fa">بازی پرونده جنایی آنلاین</p>
       <div class="tech-list mt-2">
-        <span>Django</span><span>REST Framework</span><span>PostgreSQL</span><span>React</span><span>Vite</span><span>TypeScript</span><span>Docker</span><span>Linux Server</span>
+        <span>Django</span>
+        <span>REST Framework</span>
+        <span>PostgreSQL</span>
+        <span>React</span>
+        <span>Vite</span>
+        <span>TypeScript</span>
+        <span>Docker</span>
+        <span>Linux Server</span>
+      </div>
+      <div class="mt-3">
+        <a href="https://parvandechi.ir" target="_blank" class="btn btn-custom">
+          <i class="bi bi-box-arrow-up-right"></i> <span class="en">View Site</span><span class="fa">مشاهده سایت</span>
+        </a>
       </div>
     </div>
 
     <!-- Rwagh -->
     <div class="card shadow p-4 mb-4">
-      <div class="lang fa active">
-        <h3 class="fw-bold">رواق</h3>
-        <p class="text-muted">بازارچه خرید و فروش کتاب دست دوم</p>
-        <div class="mt-3"><a href="https://rwagh.ir" target="_blank" class="btn btn-custom"><i class="bi bi-box-arrow-up-right"></i> مشاهده سایت</a></div>
-      </div>
-      <div class="lang en">
-        <h3 class="fw-bold">Rwagh</h3>
-        <p class="text-muted">Second-hand Book Marketplace</p>
-        <div class="mt-3"><a href="https://rwagh.ir" target="_blank" class="btn btn-custom"><i class="bi bi-box-arrow-up-right"></i> Visit Site</a></div>
-      </div>
+      <h3 class="fw-bold en">Rwagh</h3>
+      <h3 class="fw-bold fa">رواق</h3>
+      <p class="text-muted en">Second-Hand Book Marketplace</p>
+      <p class="text-muted fa">بازارچه خرید و فروش کتاب دست دوم</p>
       <div class="tech-list mt-2">
-        <span>Django</span><span>PostgreSQL</span><span>Docker</span><span>Linux Server</span>
+        <span>Django</span>
+        <span>PostgreSQL</span>
+        <span>Docker</span>
+        <span>Linux Server</span>
+      </div>
+      <div class="mt-3">
+        <a href="https://rwagh.ir" target="_blank" class="btn btn-custom">
+          <i class="bi bi-box-arrow-up-right"></i> <span class="en">View Site</span><span class="fa">مشاهده سایت</span>
+        </a>
       </div>
     </div>
 
     <!-- Tabibaan -->
     <div class="card shadow p-4 mb-4">
-      <div class="lang fa active">
-        <h3 class="fw-bold">طبیبان</h3>
-        <p class="text-muted">شبکه اجتماعی پزشکان</p>
-        <div class="mt-3"><a href="https://tabibaan.ir" target="_blank" class="btn btn-custom"><i class="bi bi-box-arrow-up-right"></i> مشاهده سایت</a></div>
-      </div>
-      <div class="lang en">
-        <h3 class="fw-bold">Tabibaan</h3>
-        <p class="text-muted">Doctors' Social Network</p>
-        <div class="mt-3"><a href="https://tabibaan.ir" target="_blank" class="btn btn-custom"><i class="bi bi-box-arrow-up-right"></i> Visit Site</a></div>
-      </div>
+      <h3 class="fw-bold en">Tabibaan</h3>
+      <h3 class="fw-bold fa">طبیبان</h3>
+      <p class="text-muted en">Doctors' Social Network</p>
+      <p class="text-muted fa">شبکه اجتماعی پزشکان</p>
       <div class="tech-list mt-2">
-        <span>Django</span><span>PostgreSQL</span><span>Docker</span><span>Linux Server</span>
+        <span>Django</span>
+        <span>PostgreSQL</span>
+        <span>Docker</span>
+        <span>Linux Server</span>
+      </div>
+      <div class="mt-3">
+        <a href="https://tabibaan.ir" target="_blank" class="btn btn-custom">
+          <i class="bi bi-box-arrow-up-right"></i> <span class="en">View Site</span><span class="fa">مشاهده سایت</span>
+        </a>
       </div>
     </div>
 
@@ -255,49 +287,68 @@
 
   <!-- Education -->
   <section class="container mt-5 text-center">
-    <div class="lang fa active">
-      <h2 class="section-title">تحصیلات</h2>
-      <div class="card shadow p-4 mt-3">
-        <p>کارشناسی مهندسی کامپیوتر – دانشگاه یزد | ورودی ۱۴۰۲ (ترم ۵)</p>
-      </div>
-    </div>
-    <div class="lang en">
-      <h2 class="section-title">Education</h2>
-      <div class="card shadow p-4 mt-3">
-        <p>Bachelor of Computer Engineering – Yazd University | Admitted in 2023 (5th Semester)</p>
-      </div>
+    <h2 class="section-title en">Education</h2>
+    <h2 class="section-title fa">تحصیلات</h2>
+    <div class="card shadow p-4 mt-3">
+      <p class="en">Bachelor's in Computer Engineering – Yazd University | Entry 2023 (Semester 5)</p>
+      <p class="fa">کارشناسی مهندسی کامپیوتر – دانشگاه یزد | ورودی ۱۴۰۲ (ترم ۵)</p>
     </div>
   </section>
 
   <!-- Contact -->
   <section class="container mt-5 text-center">
-    <div class="lang fa active">
-      <h2 class="section-title">ارتباط با من</h2>
-      <div class="card shadow p-4 mt-3">
-        <p><i class="bi bi-envelope"></i> <a href="mailto:m.hassani4951383@gmail.com">m.hassani4951383@gmail.com</a></p>
-        <p><i class="bi bi-linkedin"></i> <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank">LinkedIn</a></p>
-        <p><i class="bi bi-github"></i> <a href="https://github.com/mahdihassani-dev" target="_blank">GitHub</a></p>
-      </div>
-    </div>
-    <div class="lang en">
-      <h2 class="section-title">Contact Me</h2>
-      <div class="card shadow p-4 mt-3">
-        <p><i class="bi bi-envelope"></i> <a href="mailto:m.hassani4951383@gmail.com">m.hassani4951383@gmail.com</a></p>
-        <p><i class="bi bi-linkedin"></i> <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank">LinkedIn</a></p>
-        <p><i class="bi bi-github"></i> <a href="https://github.com/mahdihassani-dev" target="_blank">GitHub</a></p>
-      </div>
+    <h2 class="section-title en">Contact Me</h2>
+    <h2 class="section-title fa">ارتباط با من</h2>
+    <div class="card shadow p-4 mt-3">
+      <p><i class="bi bi-envelope"></i> <a href="mailto:m.hassani4951383@gmail.com">m.hassani4951383@gmail.com</a></p>
+      <p><i class="bi bi-linkedin"></i> <a href="https://www.linkedin.com/in/mahdi-hassani-939602255/" target="_blank">LinkedIn</a></p>
+      <p><i class="bi bi-github"></i> <a href="https://github.com/mahdihassani-dev" target="_blank">GitHub</a></p>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="text-center mt-5">
-    <div class="lang fa active">
-      <p>&copy; ۲۰۲۵ مهدی حسنی | ساخته شده با ❤️</p>
-    </div>
-    <div class="lang en">
-      <p>&copy; 2025 Mahdi Hassani | Built with ❤️</p>
-    </div>
+    <p class="en">&copy; 2025 Mahdi Hassani | Built with ❤️</p>
+    <p class="fa">&copy; ۲۰۲۵ مهدی حسنی | ساخته شده با ❤️</p>
   </footer>
 
   <script>
-   
+    const toggleDarkBtn = document.getElementById('toggleDark');
+    toggleDarkBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        toggleDarkBtn.innerHTML = '<i class="bi bi-brightness-high"></i> ' + (document.body.classList.contains('language-fa') ? 'حالت روشن' : 'Light Mode');
+        toggleDarkBtn.classList.replace('btn-light', 'btn-dark');
+      } else {
+        toggleDarkBtn.innerHTML = '<i class="bi bi-moon"></i> ' + (document.body.classList.contains('language-fa') ? 'حالت تاریک' : 'Dark Mode');
+        toggleDarkBtn.classList.replace('btn-dark', 'btn-light');
+      }
+    });
+
+    const toggleLangBtn = document.getElementById('toggleLanguage');
+    toggleLangBtn.addEventListener('click', () => {
+      if (document.body.classList.contains('language-en')) {
+        document.body.classList.remove('language-en');
+        document.body.classList.add('language-fa');
+        document.documentElement.setAttribute('lang', 'fa');
+        document.documentElement.setAttribute('dir', 'rtl');
+        toggleLangBtn.innerHTML = '<i class="bi bi-translate"></i> English';
+        toggleDarkBtn.innerHTML = '<i class="bi bi-moon"></i> حالت تاریک'; // Update dark button text
+        if (document.body.classList.contains('dark-mode')) {
+          toggleDarkBtn.innerHTML = '<i class="bi bi-brightness-high"></i> حالت روشن';
+        }
+      } else {
+        document.body.classList.remove('language-fa');
+        document.body.classList.add('language-en');
+        document.documentElement.setAttribute('lang', 'en');
+        document.documentElement.setAttribute('dir', 'ltr');
+        toggleLangBtn.innerHTML = '<i class="bi bi-translate"></i> فارسی';
+        toggleDarkBtn.innerHTML = '<i class="bi bi-moon"></i> Dark Mode'; // Update dark button text
+        if (document.body.classList.contains('dark-mode')) {
+          toggleDarkBtn.innerHTML = '<i class="bi bi-brightness-high"></i> Light Mode';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
