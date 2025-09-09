@@ -39,6 +39,7 @@
       color: var(--text-color);
       transition: var(--transition);
       line-height: 1.6;
+      padding-top: 60px;
     }
 
     body.language-fa {
@@ -67,6 +68,29 @@
       object-fit: cover;
       border: 5px solid rgba(255, 255, 255, 0.3);
       margin-bottom: 1.5rem;
+    }
+
+    /* Language Toggle Button */
+    .language-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: var(--card-bg);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid var(--primary-color);
+    }
+
+    .language-toggle:hover {
+      transform: scale(1.1);
     }
 
     /* Section Titles */
@@ -162,46 +186,147 @@
     body.language-fa .en { display: none; }
     body.language-fa .fa { display: block; }
 
-    /* Table Styles */
-    .table-custom {
-      width: 100%;
-      border-collapse: collapse;
+    /* Modern Table Styles */
+    .timeline {
+      position: relative;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--primary-color);
+      left: 50%;
+      margin-left: -2px;
+      border-radius: 10px;
+    }
+
+    body[dir="rtl"] .timeline:before {
+      left: auto;
+      right: 50%;
+      margin-right: -2px;
+      margin-left: 0;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 50px;
+    }
+
+    .timeline-badge {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: var(--primary-color);
+      border: 4px solid var(--card-bg);
+      border-radius: 50%;
+      left: 50%;
+      margin-left: -12px;
+      top: 10px;
+      z-index: 2;
+    }
+
+    body[dir="rtl"] .timeline-badge {
+      left: auto;
+      right: 50%;
+      margin-right: -12px;
+      margin-left: 0;
+    }
+
+    .timeline-panel {
+      position: relative;
+      width: 45%;
+      padding: 20px;
+      background: var(--card-bg);
       border-radius: 15px;
-      overflow: hidden;
       box-shadow: var(--shadow);
-      background-color: var(--card-bg);
-    }
-
-    .table-custom thead {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
-    }
-
-    .table-custom th, .table-custom td {
-      padding: 1.2rem;
-      text-align: left;
-    }
-
-    body[dir="rtl"] .table-custom th, 
-    body[dir="rtl"] .table-custom td {
-      text-align: right;
-    }
-
-    .table-custom tbody tr {
-      border-bottom: 1px solid rgba(0,0,0,0.1);
       transition: var(--transition);
     }
 
-    .dark-mode .table-custom tbody tr {
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+    .timeline-panel:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
-    .table-custom tbody tr:hover {
-      background-color: rgba(67, 97, 238, 0.05);
+    .timeline-item:nth-child(odd) .timeline-panel {
+      left: 0;
     }
 
-    .dark-mode .table-custom tbody tr:hover {
-      background-color: rgba(76, 201, 240, 0.05);
+    .timeline-item:nth-child(even) .timeline-panel {
+      left: 55%;
+    }
+
+    body[dir="rtl"] .timeline-item:nth-child(odd) .timeline-panel {
+      left: auto;
+      right: 0;
+    }
+
+    body[dir="rtl"] .timeline-item:nth-child(even) .timeline-panel {
+      left: auto;
+      right: 55%;
+    }
+
+    .timeline-heading {
+      margin-bottom: 15px;
+    }
+
+    .timeline-title {
+      margin-top: 0;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .timeline-body p {
+      margin-bottom: 0;
+      color: var(--text-color);
+    }
+
+    .timeline-date {
+      display: inline-block;
+      padding: 5px 15px;
+      background: rgba(67, 97, 238, 0.1);
+      color: var(--primary-color);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .dark-mode .timeline-date {
+      background: rgba(76, 201, 240, 0.15);
+    }
+
+    @media (max-width: 767px) {
+      .timeline:before {
+        left: 40px;
+      }
+      
+      body[dir="rtl"] .timeline:before {
+        left: auto;
+        right: 40px;
+      }
+      
+      .timeline-panel {
+        width: calc(100% - 90px);
+        float: right;
+        left: auto !important;
+        right: auto !important;
+      }
+      
+      .timeline-badge {
+        left: 40px;
+        margin-left: -12px;
+      }
+      
+      body[dir="rtl"] .timeline-badge {
+        left: auto;
+        right: 40px;
+        margin-right: -12px;
+      }
     }
 
     /* Real-time Clock */
@@ -263,10 +388,6 @@
         font-size: 2rem;
       }
       
-      .table-responsive {
-        overflow-x: auto;
-      }
-      
       .section-title {
         font-size: 1.8rem;
       }
@@ -275,10 +396,15 @@
 </head>
 <body class="language-en">
 
+  <!-- Language Toggle Button -->
+  <div class="language-toggle" id="toggleLanguage">
+    <i class="bi bi-translate"></i>
+  </div>
+
   <!-- Header -->
   <header class="text-center py-5 mb-5">
     <div class="container-custom">
-      <img src="https://via.placeholder.com/150" alt="Profile" class="profile-img rounded-circle">
+      <img src="https://github.com/mahdihassani-dev/mahdihassani-dev.github.io/blob/main/photo19835360435.jpg" alt="Profile" class="profile-img rounded-circle">
       <h1 class="en">Mahdi Hassani</h1>
       <h1 class="fa">مهدی حسنی</h1>
       <p class="lead en">Back-end Developer | Computer Engineering Student</p>
@@ -304,9 +430,6 @@
       <div class="mt-3">
         <button id="toggleDark" class="btn btn-light toggle-btn mx-1 mb-2">
           <i class="bi bi-moon"></i> <span class="en">Dark Mode</span><span class="fa">حالت تاریک</span>
-        </button>
-        <button id="toggleLanguage" class="btn btn-outline-light toggle-btn mx-1 mb-2">
-          <i class="bi bi-translate"></i> <span class="en">فارسی</span><span class="fa">English</span>
         </button>
       </div>
     </div>
@@ -351,34 +474,43 @@
     <section class="mb-5">
       <h2 class="text-center section-title en">Work Experience</h2>
       <h2 class="text-center section-title fa">تجربه کاری</h2>
-      <div class="mt-4">
-        <table class="table-custom">
-          <thead>
-            <tr>
-              <th class="en">Position</th>
-              <th class="fa">سمت</th>
-              <th class="en">Company</th>
-              <th class="fa">شرکت</th>
-              <th class="en">Duration</th>
-              <th class="fa">مدت</th>
-              <th class="en">Description</th>
-              <th class="fa">توضیحات</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="en">Back-end Developer</td>
-              <td class="fa">بک‌اند دولوپر</td>
-              <td class="en">Lian Gohar</td>
-              <td class="fa">لیان گوهران</td>
-              <td class="en">2023 – 2024</td>
-              <td class="fa">۱۴۰۲ – ۱۴۰۳</td>
-              <td class="en">Developing APIs with Django REST Framework, managing PostgreSQL databases, Docker, and deploying projects on servers. Projects include CRM, gold store, and industrial automation website.</td>
-              <td class="fa">توسعه API با Django REST Framework، مدیریت پایگاه داده PostgreSQL، Docker و استقرار پروژه‌ها روی سرور. پروژه‌ها شامل CRM، فروشگاه طلا و وبسایت اتوماسیون صنعتی.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      
+      <ul class="timeline mt-4">
+        <li class="timeline-item">
+          <div class="timeline-badge"></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <span class="timeline-date en">2023 – 2024</span>
+              <span class="timeline-date fa">۱۴۰۲ – ۱۴۰۳</span>
+              <h4 class="timeline-title en">Back-end Developer</h4>
+              <h4 class="timeline-title fa">بک‌اند دولوپر</h4>
+              <h5 class="en">Lian Goharan</h5>
+              <h5 class="fa">لیان گوهران</h5>
+            </div>
+            <div class="timeline-body">
+              <p class="en">Developing APIs with Django REST Framework, managing PostgreSQL databases, Docker, and deploying projects on servers. Projects include CRM, gold store, and industrial automation website.</p>
+              <p class="fa">توسعه API با Django REST Framework، مدیریت پایگاه داده PostgreSQL، Docker و استقرار پروژه‌ها روی سرور. پروژه‌ها شامل CRM، فروشگاه طلا و وبسایت اتوماسیون صنعتی.</p>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-badge"></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <span class="timeline-date en">2022 – 2023</span>
+              <span class="timeline-date fa">۱۴۰۱ – ۱۴۰۲</span>
+              <h4 class="timeline-title en">Junior Developer</h4>
+              <h4 class="timeline-title fa">توسعه‌دهنده مبتدی</h4>
+              <h5 class="en">Tech Solutions</h5>
+              <h5 class="fa">راهکارهای فناوری</h5>
+            </div>
+            <div class="timeline-body">
+              <p class="en">Worked on various web development projects, focusing on backend development with Python and Django. Collaborated with team members to deliver high-quality software solutions.</p>
+              <p class="fa">کار روی پروژه‌های مختلف توسعه وب، با تمرکز بر توسعه بک‌اند با پایتون و جنگو. همکاری با اعضای تیم برای ارائه راه‌حل‌های نرم‌افزاری با کیفیت بالا.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
     </section>
 
     <!-- Projects -->
@@ -473,10 +605,43 @@
   <!-- Footer -->
   <footer class="text-center">
     <p class="en">&copy; 2025 Mahdi Hassani | Built with ❤️</p>
-    <p class="fa">&copy; ۲۰۲۵ مهدی حسنی | ساخته شده با ❤️</p>
+    <p class="fa">&copy; ۱۴۰۴ مهدی حسنی | ساخته شده با ❤️</p>
   </footer>
 
   <script>
+    // Convert Gregorian to Solar (Jalali) date
+    function gregorianToJalali(gy, gm, gd) {
+      const g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+      let jy = (gy <= 1600) ? 0 : 979;
+      gy -= (gy <= 1600) ? 621 : 1600;
+      let gy2 = (gm > 2) ? (gy + 1) : gy;
+      let days = (365 * gy) + (parseInt((gy2 + 3) / 4)) - (parseInt((gy2 + 99) / 100)) + (parseInt((gy2 + 399) / 400)) - 80 + gd + g_d_m[gm - 1];
+      jy += 33 * (parseInt(days / 12053));
+      days %= 12053;
+      jy += 4 * (parseInt(days / 1461));
+      days %= 1461;
+      jy += parseInt((days - 1) / 365);
+      if (days > 365) days = (days - 1) % 365;
+      let jm = (days < 186) ? 1 + parseInt(days / 31) : 7 + parseInt((days - 186) / 30);
+      let jd = 1 + ((days < 186) ? (days % 31) : ((days - 186) % 30));
+      return [jy, jm, jd];
+    }
+
+    // Format Solar (Jalali) date
+    function formatJalaliDate(jy, jm, jd) {
+      const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+      const persianMonths = [
+        'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
+        'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
+      ];
+      
+      const formatNumber = num => {
+        return num.toString().replace(/\d/g, d => farsiDigits[parseInt(d)]);
+      };
+      
+      return `${formatNumber(jd)} ${persianMonths[jm - 1]} ${formatNumber(jy)}`;
+    }
+
     // Real-time Clock
     function updateClock() {
       const now = new Date();
@@ -489,30 +654,19 @@
       const seconds = String(now.getSeconds()).padStart(2, '0');
       
       // Format date
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       let dateString;
       
       if (document.body.classList.contains('language-fa')) {
-        // Persian date format
-        const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-        const day = now.getDate();
-        const month = now.getMonth() + 1;
-        const year = now.getFullYear();
+        // Convert to Solar (Jalali) date
+        const jalaliDate = gregorianToJalali(now.getFullYear(), now.getMonth() + 1, now.getDate());
+        dateString = formatJalaliDate(jalaliDate[0], jalaliDate[1], jalaliDate[2]);
         
-        const formatToPersian = num => {
-          return num.toString().replace(/\d/g, d => farsiDigits[parseInt(d)]);
+        const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        const formatTime = time => {
+          return time.toString().replace(/\d/g, d => farsiDigits[parseInt(d)]);
         };
         
-        const persianMonths = [
-          'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
-          'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
-        ];
-        
-        const persianDays = [
-          'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'
-        ];
-        
-        dateString = `${persianDays[now.getDay()]}، ${formatToPersian(day)} ${persianMonths[month-1]} ${formatToPersian(year)}`;
+        clockElement.textContent = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
       } else {
         // English date format
         dateString = now.toLocaleDateString('en-US', { 
@@ -521,9 +675,9 @@
           month: 'long', 
           day: 'numeric' 
         });
+        clockElement.textContent = `${hours}:${minutes}:${seconds}`;
       }
       
-      clockElement.textContent = `${hours}:${minutes}:${seconds}`;
       dateElement.textContent = dateString;
     }
     
@@ -552,7 +706,6 @@
         document.body.classList.add('language-fa');
         document.documentElement.setAttribute('lang', 'fa');
         document.documentElement.setAttribute('dir', 'rtl');
-        toggleLangBtn.innerHTML = '<i class="bi bi-translate"></i> English';
         
         // Update dark button text
         if (document.body.classList.contains('dark-mode')) {
@@ -565,7 +718,6 @@
         document.body.classList.add('language-en');
         document.documentElement.setAttribute('lang', 'en');
         document.documentElement.setAttribute('dir', 'ltr');
-        toggleLangBtn.innerHTML = '<i class="bi bi-translate"></i> فارسی';
         
         // Update dark button text
         if (document.body.classList.contains('dark-mode')) {
